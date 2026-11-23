@@ -33,7 +33,8 @@ if (-not (Test-Path "$Target\resources\app\out\main\index.js")) {
   Remove-Item "$Target\resources\app" -Recurse -Force -ErrorAction SilentlyContinue
   Remove-Item "$Target\resources\default_app.asar" -Force -ErrorAction SilentlyContinue
 }
-Copy-Item "$PSScriptRoot\app\*" "$Target\resources\app\" -Recurse -Force
+New-Item -ItemType Directory -Force -Path "$Target\resources\app" | Out-Null
+Copy-Item "$PSScriptRoot\app\*" "$Target\resources\app" -Recurse -Force
 Copy-Item "$PSScriptRoot\plugin-bundle" "$Target\resources\plugin-bundle" -Recurse -Force
 Copy-Item "$PSScriptRoot\app-update.yml" "$Target\resources\app-update.yml" -Force
 Rename-Item "$Target\electron.exe" "blume.exe" -Force -ErrorAction SilentlyContinue
