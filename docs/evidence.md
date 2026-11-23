@@ -30,7 +30,10 @@ Not committed for size: the 1 GB ASAR evidence bundle and the 233 MB website dee
 | Deep-link scenario | `blume://app/agents?source=website_download` → window at `#/agents`, 3/3 actions completed |
 | Single-instance | second instance forwards to primary and exits (log: "secondary dev instance forwarded a possible account callback") |
 | Reconstruction proof | `rea list-electron-targets` reports the renderer at the **copied** `resources\app\out\renderer\index.html`, not the vendor asar |
+| **Self-contained rebuild (stock Electron 43.1.1, no vendor installer)** | `build-and-run.ps1` → window "Blume", 10 processes incl. 5+ Node utility workers + network service, app logger serving; renderer at `<runtime>\resources\app\out\renderer\index.html` |
 | Main log | `%APPDATA%\Blume\logs\main.ndjson` — pino NDJSON with app_product/app_surface/app_client fields; perf warnings expose IPC handler latencies |
+
+The self-contained rebuild needed one debugging insight, recorded here for reproducibility: the vendor binary is a **patched Electron** — it resolves the `node:electron` module specifier and ships its own runtime; on stock Electron the payload boots unchanged once the app's complete `node_modules` is present (the in-asar packages are not bundled into the chunks — `out/main/index.js` requires `@electron-toolkit/utils` & co. at runtime). The failure mode without them is a silent pre-window hang with a Chromium "A JavaScript error occurred in the main process" dialog; the fix is the committed `node_modules`, not a code change.
 
 ## Website mirror verification
 

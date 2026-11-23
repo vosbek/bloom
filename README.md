@@ -25,6 +25,15 @@ Deeper detail: [docs/how-it-works.md](docs/how-it-works.md) · diagrams: [Archit
 
 ## How to run it
 
+### The desktop app — one command, no vendor installer
+
+```
+cd desktop
+powershell -ExecutionPolicy Bypass -File build-and-run.ps1
+```
+
+Downloads stock Electron 43.1.1 (checksum-verified), assembles `resources\app` from this repo's complete payload — the app's own `node_modules` (in-asar packages + unpacked native binaries) is committed — renames the exe, and launches. Verified: window at `#/deliveries`, the full utility-worker fleet, app logger live.
+
 ### The website mirror (works offline)
 
 ```
@@ -33,19 +42,6 @@ node serve.cjs
 ```
 
 → http://127.0.0.1:8377/ — the full blume.codes homepage including its in-browser app replica (SQLite-WASM fixture host, demo deliveries, flower themes). Verified against production: 6,202 DOM words identical, 53/921,600 screenshot pixels differ (0.01%, procedural petals only).
-
-### The desktop app from reconstructed code
-
-The shipped installer puts a signed app at `%LOCALAPPDATA%\Programs\@blumedesktop`. To run **our extracted copy** instead (Electron loads a `resources\app\` directory in preference to `app.asar`):
-
-1. Install Blume 2.0.26 once (any machine), so `blume.exe` + the Chromium runtime exist:
-   `Blume-2.0.26-setup.exe /S`
-2. Copy the install folder to wherever you want the reconstruction, **without** `resources\app.asar` and `resources\app.asar.unpacked`.
-3. Copy this repo's `desktop/app/` contents into `<copy>\resources\app\`.
-4. Overlay the unpacked native modules (`.node` binaries) from the original install's `resources\app.asar.unpacked\` into the same tree.
-5. Run `<copy>\blume.exe`. Verified: window boots to `#/deliveries`, deep links (`blume://app/agents`) navigate, workers spawn, updater checks in.
-
-Full recipe incl. verification commands: [docs/how-to-run.md](docs/how-to-run.md).
 
 ### The diagrams
 
