@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-aq2yapxd> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>Add a gift note at checkout · Acorn demo</title><link rel="stylesheet" href="/_astro/about.BEsUjvZW.css">
+<style>*{box-sizing:border-box}body{margin:0;min-height:100svh;padding:clamp(12px,6vw,60px);background:#efece5;color:#24392c;font:15px/1.35 system-ui,sans-serif}main[data-astro-cid-aq2yapxd]{max-width:355px;margin:auto;background:#fffdf7;border:1px solid #d5d6c9;border-radius:12px;overflow:hidden}header[data-astro-cid-aq2yapxd]{display:flex;align-items:baseline;justify-content:space-between;padding:10px 14px;background:#ecefe4;border-bottom:1px solid #d5d6c9}header[data-astro-cid-aq2yapxd] b[data-astro-cid-aq2yapxd]{font:700 26px/1 Georgia,serif;letter-spacing:-.05em}header[data-astro-cid-aq2yapxd] span[data-astro-cid-aq2yapxd],small[data-astro-cid-aq2yapxd]{font-size:12px;color:#506050}section[data-astro-cid-aq2yapxd]{padding:14px}h1[data-astro-cid-aq2yapxd]{font:500 24px/1.1 Georgia,serif;margin:0 0 12px}.product[data-astro-cid-aq2yapxd],.total[data-astro-cid-aq2yapxd],.choice[data-astro-cid-aq2yapxd]{display:flex;align-items:center;gap:8px}.product[data-astro-cid-aq2yapxd]{margin-bottom:12px}.product[data-astro-cid-aq2yapxd] strong[data-astro-cid-aq2yapxd],small[data-astro-cid-aq2yapxd],output[data-astro-cid-aq2yapxd]{display:block}.thumb[data-astro-cid-aq2yapxd]{flex:none;position:relative;overflow:hidden;width:38px;height:42px;border-radius:5px;background:#eee9df}.thumb[data-astro-cid-aq2yapxd] img[data-astro-cid-aq2yapxd]{position:absolute;width:456px;max-width:none;height:auto;left:-300px;top:-90px}#gift[data-astro-cid-aq2yapxd],#saved[data-astro-cid-aq2yapxd]{background:#eef3e9;border:1px solid #bfcebc;border-radius:7px;margin:0 0 12px;padding:8px}.choice[data-astro-cid-aq2yapxd]{font-size:14px;font-weight:650;gap:5px;cursor:pointer}input[data-astro-cid-aq2yapxd]{width:15px;height:15px;margin:0;accent-color:#365840}textarea[data-astro-cid-aq2yapxd]{display:block;width:100%;resize:vertical;padding:6px;margin-top:6px;font:14px/1.3 system-ui,sans-serif;color:inherit;background:#fff;border:1px solid #b7c3b4;border-radius:4px}#saved[data-astro-cid-aq2yapxd] output[data-astro-cid-aq2yapxd]{overflow-wrap:anywhere}.total[data-astro-cid-aq2yapxd]{border-top:1px solid #d8dace;justify-content:space-between;padding:10px 0}button[data-astro-cid-aq2yapxd]{cursor:pointer;width:100%;background:#294533;color:#fffdf7;border:0;border-radius:5px;min-height:36px;font:600 14px system-ui,sans-serif}.sr[data-astro-cid-aq2yapxd]{position:absolute;clip-path:inset(50%);width:1px;height:1px;overflow:hidden}[hidden]{display:none}
+</style><script type="module" src="/_astro/page.DGRhADao.js"></script></head> <body data-astro-cid-aq2yapxd> <main data-astro-cid-aq2yapxd> <header data-astro-cid-aq2yapxd><b data-astro-cid-aq2yapxd>acorn</b><span data-astro-cid-aq2yapxd>Checkout</span></header> <section data-astro-cid-aq2yapxd> <h1 data-astro-cid-aq2yapxd>Order summary</h1> <div class="product" data-astro-cid-aq2yapxd> <span class="thumb" aria-hidden="true" data-astro-cid-aq2yapxd><img src="/_astro/checkout-pass.W7fA_TEG.svg" alt="" data-astro-cid-aq2yapxd></span> <div data-astro-cid-aq2yapxd><strong data-astro-cid-aq2yapxd>Everyday tote</strong><small data-astro-cid-aq2yapxd>Sage · Qty 1</small></div> </div> <div id="gift" hidden data-astro-cid-aq2yapxd> <label class="choice" data-astro-cid-aq2yapxd><input type="checkbox" id="include-note" data-astro-cid-aq2yapxd> Add a gift note</label> <label id="message" hidden data-astro-cid-aq2yapxd><span class="sr" data-astro-cid-aq2yapxd>Gift note</span><textarea rows="2" maxlength="80" placeholder="Your message" data-astro-cid-aq2yapxd></textarea></label> </div> <div id="saved" hidden data-astro-cid-aq2yapxd><strong data-astro-cid-aq2yapxd>Gift note</strong><output data-astro-cid-aq2yapxd></output></div> <div class="total" data-astro-cid-aq2yapxd><strong data-astro-cid-aq2yapxd>Total</strong><b data-astro-cid-aq2yapxd>$48.00</b></div> <button type="button" data-astro-cid-aq2yapxd>Review order</button> </section> </main> <script>(function(){const GIFT_NOTE = "Happy birthday, Jo!";
+
+      const main = document.querySelector('main');
+      const checkbox = main.querySelector('#include-note');
+      const note = main.querySelector('textarea');
+      const action = main.querySelector('button');
+      const view = new URL(location.href).searchParams.get('view');
+      const legacy = view === 'before';
+      const key = 'blume:checkout-gift-note';
+      let reviewing = false;
+      if (view === 'after') {
+        checkbox.checked = true;
+        note.value = GIFT_NOTE;
+        history.replaceState(null, '', location.pathname);
+      } else if (!legacy) {
+        try {
+          const saved = JSON.parse(sessionStorage.getItem(key) || '{}');
+          checkbox.checked = saved.enabled === true;
+          note.value = typeof saved.message === 'string' ? saved.message : '';
+        } catch {}
+      }
+      function render() {
+        main.querySelector('#gift').hidden = legacy || reviewing;
+        main.querySelector('#message').hidden = !checkbox.checked;
+        main.querySelector('#saved').hidden =
+          legacy || !reviewing || !checkbox.checked || !note.value.trim();
+        main.querySelector('output').textContent = note.value.trim();
+        main.querySelector('h1').textContent = reviewing
+          ? 'Review your order'
+          : 'Order summary';
+        action.textContent = reviewing ? 'Edit order' : 'Review order';
+        if (!legacy) {
+          try {
+            sessionStorage.setItem(
+              key,
+              JSON.stringify({ enabled: checkbox.checked, message: note.value })
+            );
+          } catch {}
+        }
+      }
+      checkbox.addEventListener('change', render);
+      note.addEventListener('input', render);
+      action.addEventListener('click', () => {
+        reviewing = !reviewing;
+        render();
+      });
+      render();
+    })();</script> </body> </html> 

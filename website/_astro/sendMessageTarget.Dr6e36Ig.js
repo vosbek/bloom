@@ -1,0 +1,1 @@
+const o="Mod+T",n=new Set;function a(e={}){for(const t of n)t(e)}function r(){return n.size>0}function d(e){return n.add(e),()=>n.delete(e)}let s=[];function f(e){s=e}function i(e){if(e)return s.find(t=>t.threadId===e)?.id}export{o as S,a,i as b,r as c,d as o,f as r};

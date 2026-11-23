@@ -1,0 +1,202 @@
+<!doctype html>
+<meta charset="utf-8"><style data-dc-design-system-vars>@layer{:root{--canvas:#fafbfc;--surface-0:#ffffff;--surface-100:#f6f7f9;--surface-200:#eef0f3;--ink:#151718;--ink-muted:#60656d;--ink-inverse:#ffffff;--hairline:#e4e7eb;--border:#e1e4e8;--border-strong:#767b82;--brand:#1356c7;--brand-hover:#0e449f;--brand-tint:#e7effc;--on-brand:#ffffff;--deep:#0b1f44;--on-deep:#ffffff;--success:#1d7a39;--warning:#9a5500;--danger:#c2211b;--success-tint:#e3f2e8;--warning-tint:#f8ecdc;--focus:#1356c7;--on-deep-muted:#b9c6de;--viz-empty:#e3e6ea;--viz-1:#c9daf6;--viz-2:#8fb1ec;--viz-3:#4a7fd9;--viz-4:#1356c7;--viz-5:#0b1f44;--viz-highlight:#d97706;--glow:#1356c712;--glow-warm:#d977060f;--shadow-raise:0 1px 2px rgba(16, 24, 40, 0.05), 0 2px 6px -2px rgba(16, 24, 40, 0.08);--shadow-card:0 1px 2px rgba(16, 24, 40, 0.05), 0 4px 12px -4px rgba(16, 24, 40, 0.12);--shadow-panel:0 1px 2px rgba(16, 24, 40, 0.04), 0 10px 24px -14px rgba(16, 24, 40, 0.2);--shadow-primary:0 1px 2px rgba(11, 31, 68, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.14);--shadow-float:0 4px 8px rgba(16, 24, 40, 0.04), 0 16px 32px -8px rgba(16, 24, 40, 0.16);--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-6:24px;--space-8:32px;--space-12:48px;--radius-xs:5px;--radius-sm:6px;--radius-md:8px;--radius-lg:10px;--radius-xl:12px;--radius-full:999px;--font-display:Geist, -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;--font-ui:Geist, -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;--font-mono:"Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace}}</style>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Blume — reverse-engineered architecture</title>
+<script src="./_runtime/react.js"></script>
+<script src="./_runtime/react-dom.js"></script>
+<script src="./_runtime/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#fafbfc}
+  .band{background:radial-gradient(600px 360px at 0% 0%,rgba(19,86,199,.07),transparent 70%),radial-gradient(520px 320px at 100% 100%,rgba(217,119,6,.06),transparent 70%),#fafbfc}
+  .card{background:#ffffff;border:1px solid #e1e4e8;border-radius:10px;box-shadow:0 1px 2px rgba(16,24,40,.04),0 10px 24px -14px rgba(16,24,40,.2)}
+  .pill{display:inline-flex;align-items:center;padding:3px 8px;border-radius:5px;font-size:12px;font-weight:600}
+  .mono{font-family:"Geist Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+  .nlab{font-size:12px;font-weight:600;fill:#151718}
+  .nsub{font-size:10.5px;fill:#60656d}
+  .etag{font-size:10.5px;font-weight:600;fill:#60656d}
+  .edge{stroke:#767b82;stroke-width:1.5;fill:none}
+  .edge-em{stroke:#1356c7;stroke-width:2.25;fill:none}
+  .edge-sec{stroke:#9a5500;stroke-width:2;stroke-dasharray:7 4;fill:none}
+  .edge-dash{stroke:#8a9099;stroke-width:1.5;stroke-dasharray:5 4;fill:none}
+  .lblbg{fill:#fafbfc}
+</style>
+</helmet>
+<div style="font-family: Geist, system-ui, sans-serif; color: #151718; background: #fafbfc; min-height: 100%;">
+
+  <section style="background:linear-gradient(160deg,#e7effc 0%,#ffffff 65%);border-bottom:1px solid #e4e7eb;padding:26px 32px 22px;">
+    <div style="max-width:1216px;margin:0 auto;">
+      <p style="margin:0;display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+        <span class="pill" style="background:#1356c7;color:#ffffff;">BLUME DESKTOP 2.0.26</span>
+        <span class="pill" style="background:#e3f2e8;color:#1d7a39;">VERIFIED AGAINST THE SHIPPED BUILD</span>
+        <span class="pill" style="background:#f8ecdc;color:#9a5500;">REVERSE-ENGINEERED</span>
+      </p>
+      <h1 style="margin:10px 0 4px;font-size:36px;line-height:43px;font-weight:600;letter-spacing:-0.025em;">How the desktop app is built</h1>
+      <p style="margin:0;font-size:17px;line-height:26px;color:#60656d;max-width:720px;">One Electron main process hosts a loopback MCP control server. Claude Code and Codex spawn the plugin bridge and reach it with a token. The control plane is local SQLite; cloud is optional.</p>
+    </div>
+  </section>
+
+  <main class="band" style="padding:24px 32px 64px;">
+    <div style="max-width:1216px;margin:0 auto;">
+
+      <article class="card" style="padding:20px 24px 8px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:8px;">
+          <span style="font-size:13px;font-weight:600;">Component map — every edge is a recovered channel or endpoint</span>
+          <span style="display:flex;gap:10px;flex-wrap:wrap;font-size:11px;color:#60656d;align-items:center;">
+            <span><i style="width:8px;height:8px;border-radius:2px;background:#c9daf6;display:inline-block;margin-right:4px"></i>frontend</span>
+            <span><i style="width:8px;height:8px;border-radius:2px;background:#1356c7;display:inline-block;margin-right:4px"></i>backend</span>
+            <span><i style="width:8px;height:8px;border-radius:2px;background:#0b1f44;display:inline-block;margin-right:4px"></i>database</span>
+            <span><i style="width:8px;height:8px;border-radius:2px;background:#8fb1ec;display:inline-block;margin-right:4px"></i>cloud</span>
+            <span><i style="width:8px;height:8px;border-radius:2px;background:#9a5500;display:inline-block;margin-right:4px"></i>security</span>
+            <span><i style="width:8px;height:8px;border-radius:2px;background:#e3e6ea;display:inline-block;margin-right:4px"></i>external</span>
+          </span>
+        </div>
+
+        <svg viewBox="0 0 1280 600" width="100%" role="img" aria-label="Blume desktop architecture">
+          <defs>
+            <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#767b82"/></marker>
+            <marker id="ah-em" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#1356c7"/></marker>
+            <marker id="ah-sec" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#9a5500"/></marker>
+            <filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="1" stdDeviation="1.4" flood-color="rgba(16,24,40,0.14)"/></filter>
+          </defs>
+
+          <!-- region: your machine -->
+          <rect x="26" y="236" width="1064" height="312" rx="12" fill="none" stroke="#c6ccd3" stroke-width="1.25" stroke-dasharray="6 5"/>
+          <text x="40" y="254" class="etag" fill="#8a9099">YOUR MACHINE — LOCAL-FIRST</text>
+          <!-- security group: loopback MCP -->
+          <rect x="462" y="228" width="238" height="316" rx="12" fill="rgba(154,85,0,0.04)" stroke="#9a5500" stroke-width="1.25" stroke-dasharray="6 5"/>
+          <text x="474" y="540" class="etag" fill="#9a5500">LOOPBACK MCP BOUNDARY · TOKEN</text>
+
+          <!-- edges -->
+          <path class="edge-em" d="M200 82 H560 V250" marker-end="url(#ah-em)"/>
+          <path class="edge-em" d="M220 285 H480" marker-end="url(#ah-em)"/>
+          <path class="edge" d="M680 270 H900" marker-end="url(#ah)"/>
+          <path class="edge" d="M200 499 H480" marker-end="url(#ah)"/>
+          <path class="edge-sec" d="M565 467 V326" marker-end="url(#ah-sec)"/>
+          <path class="edge" d="M680 290 H860 V82 H900" marker-end="url(#ah)"/>
+          <path class="edge-dash" d="M680 330 H830 V499 H900" marker-end="url(#ah)"/>
+          <path class="edge-dash" d="M680 310 H790 V398 H900" marker-end="url(#ah)"/>
+
+          <!-- edge labels -->
+          <g font-family="Geist Mono, monospace">
+            <rect class="lblbg" x="300" y="66" width="176" height="15" rx="4"/><text x="388" y="77" text-anchor="middle" class="etag">blume://app/agents</text>
+            <rect class="lblbg" x="278" y="268" width="172" height="15" rx="4"/><text x="364" y="279" text-anchor="middle" class="etag" fill="#1356c7">IPC · 154 channels</text>
+            <rect class="lblbg" x="724" y="252" width="118" height="15" rx="4"/><text x="783" y="263" text-anchor="middle" class="etag">better-sqlite3</text>
+            <rect class="lblbg" x="252" y="483" width="160" height="15" rx="4"/><text x="332" y="494" text-anchor="middle" class="etag">spawns MCP server</text>
+            <rect class="lblbg" x="575" y="390" width="128" height="15" rx="4"/><text x="639" y="401" text-anchor="middle" class="etag" fill="#9a5500">MCP · token auth</text>
+            <rect class="lblbg" x="700" y="112" width="118" height="15" rx="4"/><text x="759" y="123" text-anchor="middle" class="etag">account:*</text>
+            <rect class="lblbg" x="840" y="408" width="98" height="15" rx="4"/><text x="889" y="419" text-anchor="middle" class="etag">latest.yml</text>
+            <rect class="lblbg" x="842" y="560" width="94" height="15" rx="4"/><text x="889" y="571" text-anchor="middle" class="etag">events</text>
+          </g>
+
+          <!-- nodes -->
+          <g>
+            <rect x="40" y="50" width="160" height="64" rx="10" fill="#ffffff" stroke="#e1e4e8" filter="url(#sh)"/>
+            <rect x="40" y="50" width="160" height="6" rx="3" fill="#8fb1ec"/>
+            <text x="56" y="76" class="nlab" font-family="Geist, sans-serif" font-weight="600">blume.codes</text>
+            <text x="56" y="92" class="nsub" font-family="Geist, sans-serif">Astro marketing site</text>
+            <text x="56" y="105" class="nsub" font-family="Geist, sans-serif" fill="#8a9099">deep links + waitlist</text>
+          </g>
+          <g>
+            <rect x="900" y="50" width="160" height="64" rx="10" fill="#ffffff" stroke="#e1e4e8" filter="url(#sh)"/>
+            <rect x="900" y="50" width="160" height="6" rx="3" fill="#9a5500"/>
+            <text x="916" y="76" class="nlab" font-family="Geist, sans-serif" font-weight="600">better-auth</text>
+            <text x="916" y="92" class="nsub" font-family="Geist, sans-serif">cloud accounts</text>
+            <text x="916" y="105" class="nsub" font-family="Geist, sans-serif" fill="#8a9099">optional sign-in</text>
+          </g>
+          <g>
+            <rect x="40" y="250" width="180" height="70" rx="10" fill="#ffffff" stroke="#e1e4e8" filter="url(#sh)"/>
+            <rect x="40" y="250" width="180" height="6" rx="3" fill="#c9daf6"/>
+            <text x="56" y="276" class="nlab" font-family="Geist, sans-serif" font-weight="600">Renderer</text>
+            <text x="56" y="292" class="nsub" font-family="Geist, sans-serif">React · routes: #/deliveries…</text>
+            <text x="56" y="307" class="nsub" font-family="Geist Mono, monospace" fill="#8a9099">out/renderer/index.html</text>
+          </g>
+          <g>
+            <rect x="480" y="250" width="200" height="76" rx="10" fill="#ffffff" stroke="#c9d3e4" stroke-width="1.5" filter="url(#sh)"/>
+            <rect x="480" y="250" width="200" height="6" rx="3" fill="#1356c7"/>
+            <text x="496" y="276" class="nlab" font-family="Geist, sans-serif" font-weight="600">Electron Main</text>
+            <text x="496" y="292" class="nsub" font-family="Geist, sans-serif">46 modules · 12 utility workers</text>
+            <text x="496" y="307" class="nsub" font-family="Geist, sans-serif" fill="#34548f">hosts the MCP control server</text>
+            <text x="496" y="320" class="nsub" font-family="Geist Mono, monospace" fill="#8a9099">blume: · blume-canary: · blume-dev:</text>
+          </g>
+          <g>
+            <rect x="900" y="250" width="170" height="64" rx="10" fill="#ffffff" stroke="#e1e4e8" filter="url(#sh)"/>
+            <rect x="900" y="250" width="170" height="6" rx="3" fill="#0b1f44"/>
+            <text x="916" y="276" class="nlab" font-family="Geist, sans-serif" font-weight="600">Control Plane DB</text>
+            <text x="916" y="292" class="nsub" font-family="Geist, sans-serif">better-sqlite3 (local)</text>
+            <text x="916" y="305" class="nsub" font-family="Geist, sans-serif" fill="#8a9099">conversations · projects · settings</text>
+          </g>
+          <g>
+            <rect x="40" y="467" width="160" height="64" rx="10" fill="#ffffff" stroke="#e1e4e8" filter="url(#sh)"/>
+            <rect x="40" y="467" width="160" height="6" rx="3" fill="#e3e6ea"/>
+            <text x="56" y="493" class="nlab" font-family="Geist, sans-serif" font-weight="600">Agent Harnesses</text>
+            <text x="56" y="509" class="nsub" font-family="Geist, sans-serif">Claude Code · Codex CLI</text>
+            <text x="56" y="522" class="nsub" font-family="Geist Mono, monospace" fill="#8a9099">mcpServers.blume</text>
+          </g>
+          <g>
+            <rect x="480" y="467" width="170" height="64" rx="10" fill="#ffffff" stroke="#e1e4e8" filter="url(#sh)"/>
+            <rect x="480" y="467" width="170" height="6" rx="3" fill="#4a7fd9"/>
+            <text x="496" y="493" class="nlab" font-family="Geist, sans-serif" font-weight="600">Plugin Bridge</text>
+            <text x="496" y="509" class="nsub" font-family="Geist, sans-serif">MCP server · v0.26.5</text>
+            <text x="496" y="522" class="nsub" font-family="Geist Mono, monospace" fill="#8a9099">bridge.mjs</text>
+          </g>
+          <g>
+            <rect x="900" y="366" width="170" height="64" rx="10" fill="#ffffff" stroke="#e1e4e8" filter="url(#sh)"/>
+            <rect x="900" y="366" width="170" height="6" rx="3" fill="#e3e6ea"/>
+            <text x="916" y="392" class="nlab" font-family="Geist, sans-serif" font-weight="600">Updater</text>
+            <text x="916" y="408" class="nsub" font-family="Geist, sans-serif">updates.blume-page.com</text>
+            <text x="916" y="421" class="nsub" font-family="Geist, sans-serif" fill="#8a9099">sha512-signed releases</text>
+          </g>
+          <g>
+            <rect x="900" y="467" width="170" height="64" rx="10" fill="#ffffff" stroke="#e1e4e8" filter="url(#sh)"/>
+            <rect x="900" y="467" width="170" height="6" rx="3" fill="#e3e6ea"/>
+            <text x="916" y="493" class="nlab" font-family="Geist, sans-serif" font-weight="600">Telemetry</text>
+            <text x="916" y="509" class="nsub" font-family="Geist, sans-serif">PostHog EU · Sentry · Chatwoot</text>
+          </g>
+        </svg>
+      </article>
+
+      <div style="display:flex;flex-wrap:wrap;gap:24px;margin-top:24px;">
+        <section class="card" style="flex:1 1 300px;min-width:0;padding:20px 24px;">
+          <h3 style="margin:0 0 10px;font-size:13px;font-weight:600;color:#60656d;">LOCAL-FIRST CORE</h3>
+          <ul style="margin:0;padding-left:18px;font-size:14px;line-height:21px;">
+            <li style="margin-bottom:6px;">Renderer ↔ main over <span class="mono" style="background:#f6f7f9;border-radius:5px;padding:1px 5px;font-size:12px">154 invoke channels</span> — db:conversations, harnesses, terminal, wrapped…</li>
+            <li style="margin-bottom:6px;">Control plane in local SQLite via better-sqlite3</li>
+            <li>12 utility workers: conversation list, refresh, wrapped-generate, PTY terminal, search, setup scan</li>
+          </ul>
+        </section>
+        <section class="card" style="flex:1 1 300px;min-width:0;padding:20px 24px;">
+          <h3 style="margin:0 0 10px;font-size:13px;font-weight:600;color:#9a5500;">AGENT BRIDGE — TRUST BOUNDARY</h3>
+          <ul style="margin:0;padding-left:18px;font-size:14px;line-height:21px;">
+            <li style="margin-bottom:6px;">Harnesses spawn <span class="mono" style="background:#f8ecdc;border-radius:5px;padding:1px 5px;font-size:12px">bridge.mjs</span> as an MCP server</li>
+            <li style="margin-bottom:6px;">Bridge reaches the loopback endpoint with <span class="mono" style="font-size:12px">BLUME_CONTROL_TOKEN</span>; remote requires HTTPS, no credentials/query/fragment</li>
+            <li>Tools: blume_request, blume_delivery_update/get, blume_tests, blume_improve, blume_inbox</li>
+          </ul>
+        </section>
+        <section class="card" style="flex:1 1 300px;min-width:0;padding:20px 24px;">
+          <h3 style="margin:0 0 10px;font-size:13px;font-weight:600;color:#60656d;">CLOUD — OPTIONAL</h3>
+          <ul style="margin:0;padding-left:18px;font-size:14px;line-height:21px;">
+            <li style="margin-bottom:6px;">better-auth sign-in gates cloud features only</li>
+            <li style="margin-bottom:6px;">Updater pulls sha512-signed releases; latest is 2.0.26 (2026-11-18)</li>
+            <li>blume.codes sends <span class="mono" style="font-size:12px">blume://</span> deep links — verified live: window navigates to #/agents</li>
+          </ul>
+        </section>
+      </div>
+
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1180}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

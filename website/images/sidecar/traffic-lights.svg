@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 49 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="TrafficLights" clip-path="url(#clip0_0_79)">
+<circle id="Ellipse" cx="5.5" cy="5.5" r="5.5" fill="var(--fill-0, #FF5F57)"/>
+<circle id="Ellipse_2" cx="24.5" cy="5.5" r="5.5" fill="var(--fill-0, #FEBC2E)"/>
+<circle id="Ellipse_3" cx="43.5" cy="5.5" r="5.5" fill="var(--fill-0, #28C840)"/>
+</g>
+<defs>
+<clipPath id="clip0_0_79">
+<rect width="49" height="11" fill="white"/>
+</clipPath>
+</defs>
+</svg>

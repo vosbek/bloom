@@ -1,0 +1,1 @@
+import{r as n}from"./index.CEK5zJnf.js";const o=n.createContext(null);function i(t,e){const r=t.getBoundingClientRect();return e&&e.detail>0?{x:e.clientX-r.left,y:e.clientY-r.top}:{x:r.width/2,y:r.height/2}}function f(){const t=n.useContext(o);if(!t)throw new Error("useRewardEffect must be used within RewardEffectProvider");return t}export{o as R,i as e,f as u};

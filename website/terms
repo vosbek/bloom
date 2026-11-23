@@ -1,0 +1,244 @@
+<!DOCTYPE html><html lang="en" data-landing-theme data-blume-flower="red-tulip" data-blume-flower-date="2026-11-23"> <head><meta charset="UTF-8"><script>// Runs inline before styles paint. The resolved theme is shared by every island.
+(() => {
+  const root = document.documentElement;
+  const key = 'blume-landing-appearance';
+  const media = window.matchMedia('(prefers-color-scheme: dark)');
+  const valid = value => ['system', 'light', 'dark'].includes(value);
+  let preference = 'system';
+  try {
+    const saved = localStorage.getItem(key);
+    if (valid(saved)) preference = saved;
+  } catch {
+    /* Appearance still works when storage is unavailable. */
+  }
+  const apply = () => {
+    root.dataset.appearance = preference;
+    root.dataset.theme =
+      preference === 'system' ? (media.matches ? 'dark' : 'light') : preference;
+    root.classList.toggle('dark', root.dataset.theme === 'dark');
+    window.dispatchEvent(new Event('blume-appearance-change'));
+  };
+  window.addEventListener('blume-appearance-request', event => {
+    if (!valid(event.detail)) return;
+    preference = event.detail;
+    try {
+      localStorage.setItem(key, preference);
+    } catch {
+      /* Session-only choice. */
+    }
+    apply();
+  });
+  media.addEventListener('change', apply);
+  window.addEventListener('storage', event => {
+    if (event.key !== key && event.key !== null) return;
+    preference = valid(event.newValue) ? event.newValue : 'system';
+    apply();
+  });
+  apply();
+})();
+</script><meta name="description" content="The Terms of Service governing your access to and use of the Blume desktop application, websites, and related services."><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/png" sizes="32x32" href="/images/flowers/red-tulip/favicon-32x32.png?v=2026-07-01" data-flower-icon="favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/flowers/red-tulip/favicon-16x16.png?v=2026-07-01" data-flower-icon="favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/images/flowers/red-tulip/apple-touch-icon.png?v=2026-07-01" data-flower-icon="apple-touch-icon.png"><meta name="generator" content="Astro v5.18.2"><title>Terms of Service — Blume</title><script type="module" src="/_astro/Layout.astro_astro_type_script_index_0_lang.CexQBFCn.js"></script><!-- Canonical URL --><link rel="canonical" href="https://blume.codes/terms"><!-- Additional SEO Meta Tags --><meta name="robots" content="index, follow"><meta name="author" content="Blume"><!-- Fonts - Preload critical fonts first --><!-- Self-host Inter so prerendered and hydrated UI use the same font file. --><link rel="preload" href="/fonts/inter-latin-variable.woff2" as="font" type="font/woff2" crossorigin><!-- Preload the most critical display font weights --><!-- Iosevka Charon Bold (latin subset) — used by the sidecar hero
+         headline. Preloaded so the font is in the disk cache before the
+         CSS stylesheet evaluates @font-face, eliminating the swap-in
+         reflow that would otherwise shift the hero copy. --><!-- SN Pro Variable (latin) — body font for sidecar sections. Self-hosted
+         so the URL is stable and the preload hint lands before CSS runs. --><link rel="preload" href="/fonts/sn-pro-latin-variable.woff2" as="font" type="font/woff2" crossorigin><!-- Preload local Calibri fonts --><!-- Load Google Fonts stylesheet (previously only preloaded, so fonts weren't applied).
+         Cormorant Garamond is the closest free Google Font to Portal's
+         "Perfectly Nineties" — used for the sidecar hero serif headline. --><!-- Open Graph --><meta property="og:title" content="Terms of Service — Blume"><meta property="og:description" content="The Terms of Service governing your access to and use of the Blume desktop application, websites, and related services."><meta property="og:type" content="website"><meta property="og:url" content="https://blume.codes/terms"><meta property="og:image" content="https://blume.codes/images/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Blume Sidecar - Watch every coding agent, effortlessly"><meta property="og:site_name" content="Blume"><meta property="og:locale" content="en_US"><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Terms of Service — Blume"><meta name="twitter:description" content="The Terms of Service governing your access to and use of the Blume desktop application, websites, and related services."><meta name="twitter:image" content="https://blume.codes/images/og-card.jpg"><meta name="twitter:image:alt" content="Blume Sidecar - Watch every coding agent, effortlessly"><meta name="twitter:site" content="@BlumeDotCodes"><meta name="twitter:creator" content="@BlumeDotCodes"><!-- Structured Data --><script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Blume",
+        "description": "Watch every coding agent, effortlessly",
+        "url": "https://blume.codes"
+      }
+    </script><script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Blume",
+        "url": "https://blume.codes",
+        "logo": "https://blume.codes/images/blume-logo-horizontal.png",
+        "description": "Watch every coding agent, effortlessly"
+      }
+    </script><!-- Umami Analytics --><!-- <script
+      defer
+      src="https://cloud.umami.is/script.js"
+      data-website-id="bf09680b-a66c-44c1-bdbc-256b775e0a7b"></script> --><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-RS01Y8K5JG"></script><script src="/scripts/google-tag.js"></script><!-- Meta Pixel Code --><script src="/scripts/meta-pixel.js"></script><noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1536006947808109&ev=PageView&noscript=1"></noscript><!-- End Meta Pixel Code --><!-- Version Checker - Proactively detects new deployments before errors occur --><script src="/scripts/version-checker.js"></script><!-- Module Error Handler - Detects and auto-reloads on module loading failures after deployments --><script src="/scripts/module-error-handler.js"></script><script type="text/javascript">
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys getNextSurveyStep onSessionId".split(" ");for(n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_mevo39heWzHfMwQWQ5Q8LPsHviHFE3inpgdeWYExbVBH', {
+      api_host: 'https://eu.i.posthog.com',
+      ui_host: 'https://eu.posthog.com',
+      defaults: '2025-05-24',
+      capture_pageview: false,
+      capture_pageleave: true,
+      disable_surveys_automatic_display: true,
+      
+      loaded: function(posthog) {
+        var telemetryProperties = {"app_product":"blume","app_surface":"marketing","app_client":"website","site_domain":"blume.codes"};
+        posthog.register(telemetryProperties);
+        posthog.capture('$pageview', telemetryProperties);
+        
+      },
+    });
+    </script><link rel="stylesheet" href="/_astro/about.BEsUjvZW.css">
+<style>@font-face{font-family:Fraunces Variable;font-style:normal;font-display:swap;font-weight:100 900;src:url(/_astro/fraunces-vietnamese-wght-normal.CnvboYUG.woff2) format("woff2-variations");unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB}@font-face{font-family:Fraunces Variable;font-style:normal;font-display:swap;font-weight:100 900;src:url(/_astro/fraunces-latin-ext-wght-normal.Ca2vKHc0.woff2) format("woff2-variations");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:Fraunces Variable;font-style:normal;font-display:swap;font-weight:100 900;src:url(/_astro/fraunces-latin-wght-normal.ukD16Tqj.woff2) format("woff2-variations");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+</style>
+<link rel="stylesheet" href="/_astro/_slug_.BXukqGao.css">
+<style>.terms[data-astro-cid-y5py4vqc]{background-color:var(--site-canvas);padding:0 0 120px}.terms__container[data-astro-cid-y5py4vqc]{padding:0 24px}.terms__intro[data-astro-cid-y5py4vqc]{display:flex;flex-direction:column;align-items:center;gap:20px;max-width:800px;margin:64px auto 0;text-align:center}.terms__title[data-astro-cid-y5py4vqc]{font-family:Gelica,Fraunces Variable,Fraunces,Georgia,serif;font-size:clamp(40px,7vw,64px);font-weight:500;line-height:1.02em;letter-spacing:-.025em;color:var(--site-ink);margin:0;text-wrap:balance}.terms__updated[data-astro-cid-y5py4vqc]{font-family:SN Pro Variable,system-ui,sans-serif;font-size:15px;font-weight:400;letter-spacing:-.01em;color:rgba(var(--site-ink-rgb),.5);margin:-8px 0 0}.terms__lede[data-astro-cid-y5py4vqc]{font-family:SN Pro Variable,system-ui,sans-serif;font-size:19px;font-weight:400;line-height:1.5em;letter-spacing:-.015em;color:rgba(var(--site-ink-rgb),.65);margin:0;max-width:620px;text-wrap:pretty}.terms__lede[data-astro-cid-y5py4vqc]+.terms__lede[data-astro-cid-y5py4vqc]{margin-top:-6px}.terms__body[data-astro-cid-y5py4vqc]{max-width:680px;margin:0 auto}.terms__body[data-astro-cid-y5py4vqc] section[data-astro-cid-y5py4vqc]{margin-top:64px}.terms__body[data-astro-cid-y5py4vqc] h2[data-astro-cid-y5py4vqc]{font-family:Gelica,Fraunces Variable,Fraunces,Georgia,serif;font-size:28px;font-weight:500;line-height:1.15em;letter-spacing:-.02em;color:var(--site-ink);margin:0 0 18px;text-wrap:balance}.terms__body[data-astro-cid-y5py4vqc] p[data-astro-cid-y5py4vqc]{font-family:SN Pro Variable,system-ui,sans-serif;font-size:17px;font-weight:400;line-height:1.6;letter-spacing:-.02em;font-feature-settings:"pnum" 1,"kern" 1,"liga" 1,"calt" 1;color:rgba(var(--site-ink-rgb),.7);margin:0 0 16px;text-wrap:pretty}.terms__body[data-astro-cid-y5py4vqc] p[data-astro-cid-y5py4vqc]:last-child{margin-bottom:0}.terms__body[data-astro-cid-y5py4vqc] a[data-astro-cid-y5py4vqc]{color:var(--site-ink);text-decoration:underline;text-underline-offset:2px;text-decoration-color:var(--terms-accent);text-decoration-thickness:2px}.terms__body[data-astro-cid-y5py4vqc] strong[data-astro-cid-y5py4vqc]{font-weight:600;color:rgba(var(--site-ink-rgb),.85)}.terms__legal[data-astro-cid-y5py4vqc]{font-size:15px;line-height:1.7;letter-spacing:0;color:rgba(var(--site-ink-rgb),.62)}.terms__list[data-astro-cid-y5py4vqc]{list-style:none;margin:0 0 16px;padding:0;display:flex;flex-direction:column;gap:12px}.terms__list[data-astro-cid-y5py4vqc]:last-child{margin-bottom:0}.terms__list[data-astro-cid-y5py4vqc] li[data-astro-cid-y5py4vqc]{font-family:SN Pro Variable,system-ui,sans-serif;font-size:17px;font-weight:400;line-height:1.55;letter-spacing:-.02em;color:rgba(var(--site-ink-rgb),.7);padding-left:26px;position:relative}.terms__list[data-astro-cid-y5py4vqc] li[data-astro-cid-y5py4vqc]:before{content:"";position:absolute;left:4px;top:.62em;width:8px;height:8px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background-color:var(--terms-accent);opacity:.85}.terms__list--lettered[data-astro-cid-y5py4vqc]{counter-reset:alpha}.terms__list--lettered[data-astro-cid-y5py4vqc] li[data-astro-cid-y5py4vqc]:before{content:"(" counter(alpha,lower-alpha) ")";counter-increment:alpha;position:absolute;left:0;top:0;width:auto;height:auto;border-radius:0;transform:none;background:none;font-family:SN Pro Variable,system-ui,sans-serif;font-size:15px;font-weight:500;line-height:1.7;color:var(--terms-accent);opacity:1}@media(max-width:767px){.terms[data-astro-cid-y5py4vqc]{padding:0 0 80px}.terms__container[data-astro-cid-y5py4vqc]{padding:0 20px}.terms__intro[data-astro-cid-y5py4vqc]{margin-top:48px}.terms__title[data-astro-cid-y5py4vqc]{font-size:clamp(32px,9vw,44px);letter-spacing:-.03em}.terms__lede[data-astro-cid-y5py4vqc]{font-size:17px}.terms__body[data-astro-cid-y5py4vqc] section[data-astro-cid-y5py4vqc]{margin-top:52px}.terms__body[data-astro-cid-y5py4vqc] h2[data-astro-cid-y5py4vqc]{font-size:24px}}
+</style>
+<link rel="stylesheet" href="/_astro/index.D4LVHNi7.css">
+<link rel="stylesheet" href="/_astro/index.DHIQWUy0.css">
+<style>@property --g{syntax: "<number>"; inherits: true; initial-value: 1;}.flower-plant{--g: 1;position:relative;display:block;pointer-events:none}.flower-plant[data-stage=sprout]{--g: .3}.flower-plant[data-stage=young]{--g: .62}.flower-plant[data-stage=bud]{--g: .86}.flower-plant[data-stage=opening]{--g: .94}.flower-plant[data-stage=bloom]{--g: 1}.flower-plant[data-animated]{transition:--g var(--flower-growth-duration, 2.8s) cubic-bezier(.33,0,.2,1)}@media(prefers-reduced-motion:reduce){.flower-plant[data-animated]{transition:none}}.flower-plant__drawing{position:absolute;inset:0;overflow:visible}.flower-plant__drawing g{transform-box:view-box}.flower-plant__stalk{transform:scaleY(max(var(--g),.001))}.flower-plant__tip{transform:translateY(calc((1 - var(--g)) * var(--d) * 1px))}.flower-plant__leaf{transform:translateY(calc((1 - var(--g)) * var(--at) * var(--d) * 1px)) scale(clamp(0,calc((var(--g) - var(--at) * .9) / .28),1))}.flower-plant__seed-leaf{opacity:clamp(0,calc((.58 - var(--g)) / .12),1);transform:scale(clamp(0,calc((var(--g) - .04) / .18),1))}.flower-plant__tip-leaf{opacity:calc(clamp(0,calc((var(--g) - .42) / .08),1)*clamp(0,calc((.82 - var(--g)) / .08),1));transform:scale(clamp(.4,calc((var(--g) - .4) / .3),1))}.flower-plant__hook{fill:none;stroke:var(--stem);stroke-linecap:round;opacity:clamp(0,calc((var(--g) - .7) / .08),1)}.flower-plant__crown{--ride: translateY(calc((1 - var(--g)) * var(--d) * 1px));position:absolute;max-width:none;user-select:none}.flower-plant__crown--bud{opacity:calc(clamp(0,calc((var(--g) - .7) / .06),1)*clamp(0,calc((.9 - var(--g)) / .04),1));transform:var(--ride) scale(clamp(.3,calc(.3 + (var(--g) - .7) * 5),1))}.flower-plant__crown--bloom{opacity:clamp(0,calc((var(--g) - .86) / .04),1);transform:var(--ride) scale(clamp(.5,calc(.5 + (var(--g) - .86) / .28),1))}.flower-plant__stem{fill:var(--stem)}.flower-plant__stem-shine{fill:none;stroke:var(--stem-light);stroke-linecap:round;opacity:.45}.flower-plant__leaf-shine{fill:var(--stem-light);opacity:.22}.flower-plant__young-blade{fill:color-mix(in srgb,var(--leaf) 75%,var(--stem-light))}.flower-plant__rib{fill:none;stroke:var(--stem-light);stroke-width:.7;stroke-linecap:round;opacity:.45}
+</style>
+<link rel="stylesheet" href="/_astro/blog.BRSOhE4v.css">
+<style>svg[data-concept-compact]>path:not([opacity]){stroke:currentColor;stroke-width:var(--concept-outline-expansion);stroke-linejoin:round;vector-effect:non-scaling-stroke}
+</style><script type="module" src="/_astro/page.DGRhADao.js"></script></head> <body class="bg-blume-beige text-blume-dark">  <main class="site-page terms" style="--terms-accent: #E73C30;" data-astro-cid-y5py4vqc> <style>:root{--site-accent:#E73C30}</style><header class="site-header" data-site-header data-astro-cid-4lunwx2e> <div class="site-header__inner" data-astro-cid-4lunwx2e> <a href="/" class="site-header__logo" aria-label="Blume home" data-astro-cid-4lunwx2e> <link rel="preload" as="image" href="/images/flowers/red-tulip/icon.png"/><span class="blume-lockup blume-lockup--md" style="--blume-mark-start-trim:calc(var(--blume-frame, 34px) * 0.35897436);--blume-mark-end-trim:calc(var(--blume-frame, 34px) * 0.30128205)" role="img" aria-label="Blume"><img class="blume-lockup__mark" src="/images/flowers/red-tulip/icon.png" alt="" draggable="false"/><span class="blume-lockup__word" aria-hidden="true">blume</span></span> </a>  <nav class="site-header__links" aria-label="Primary" data-astro-cid-4lunwx2e> <a href="/docs" data-astro-cid-4lunwx2e> Docs </a><a href="/blog" data-astro-cid-4lunwx2e> Blog </a><a href="/about" data-astro-cid-4lunwx2e> About </a><a href="/careers" data-astro-cid-4lunwx2e> Careers </a><a href="/privacy" data-astro-cid-4lunwx2e> Privacy &amp; Security </a> </nav> <div class="site-header__actions" data-astro-cid-4lunwx2e>  <button type="button" class="site-header__icon-button" data-appearance-toggle aria-label="Switch appearance" data-astro-cid-4lunwx2e> <svg class="site-header__sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true" data-astro-cid-4lunwx2e> <circle cx="12" cy="12" r="4" data-astro-cid-4lunwx2e></circle> <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4" data-astro-cid-4lunwx2e></path> </svg> <svg class="site-header__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-4lunwx2e> <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" data-astro-cid-4lunwx2e></path> </svg> </button> <div class="site-header__cta" data-astro-cid-4lunwx2e> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="20wAQh" component-url="/_astro/SidecarHeroCta.5B1V3BGO.js" component-export="default" renderer-url="/_astro/client.BlgjiPge.js" props="{&quot;showDownloadMeta&quot;:[0,false],&quot;surface&quot;:[0,&quot;floating&quot;],&quot;initialCtaVariant&quot;:[0,&quot;control&quot;],&quot;copyExperiment&quot;:[0,false],&quot;serverResolved&quot;:[0,true],&quot;downloadEnabled&quot;:[0,true],&quot;downloadPayload&quot;:[0,{&quot;platforms&quot;:[0,{&quot;mac&quot;:[0,true],&quot;windows&quot;:[0,true],&quot;linux&quot;:[0,true]}]}],&quot;data-astro-cid-4lunwx2e&quot;:[0,true]}" ssr client="only" opts="{&quot;name&quot;:&quot;SidecarHeroCta&quot;,&quot;value&quot;:&quot;react&quot;}" await-children><a href="/" class="site-header__cta-fallback" style="background:radial-gradient(ellipse 120% 160% at 50% 50%, hsl(15 100% 62%) 0%, hsl(5 85% 50%) 50%, hsl(358 90% 42%) 75%, hsl(352 95% 32%) 100%);border:1px solid #F25638;color:#8B0824;" data-astro-cid-4lunwx2e>
+Download
+</a><template data-astro-template="fallback"><a href="/" class="site-header__cta-fallback" style="background:radial-gradient(ellipse 120% 160% at 50% 50%, hsl(15 100% 62%) 0%, hsl(5 85% 50%) 50%, hsl(358 90% 42%) 75%, hsl(352 95% 32%) 100%);border:1px solid #F25638;color:#8B0824;" data-astro-cid-4lunwx2e>
+Download
+</a></template><!--astro:end--></astro-island> </div> <a href="/" class="site-header__cta-compact" style="background:radial-gradient(ellipse 120% 160% at 50% 50%, hsl(15 100% 62%) 0%, hsl(5 85% 50%) 50%, hsl(358 90% 42%) 75%, hsl(352 95% 32%) 100%);border:1px solid #F25638;color:#8B0824;" data-astro-cid-4lunwx2e>Download</a> <button type="button" class="site-header__icon-button site-header__menu-button" data-site-menu-toggle aria-label="Menu" aria-expanded="false" aria-controls="site-header-menu" data-astro-cid-4lunwx2e> <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-4lunwx2e> <path d="M4 7h16M4 12h16M4 17h16" data-astro-cid-4lunwx2e></path> </svg> </button> </div> </div> <nav id="site-header-menu" class="site-header__menu" aria-label="Menu" data-astro-cid-4lunwx2e> <a href="/docs" data-astro-cid-4lunwx2e> Docs </a><a href="/blog" data-astro-cid-4lunwx2e> Blog </a><a href="/about" data-astro-cid-4lunwx2e> About </a><a href="/careers" data-astro-cid-4lunwx2e> Careers </a><a href="/privacy" data-astro-cid-4lunwx2e> Privacy &amp; Security </a> </nav> </header>  <script type="module" src="/_astro/SiteNav.astro_astro_type_script_index_0_lang.Df7c07k4.js"></script> <div class="terms__container" data-astro-cid-y5py4vqc> <header class="terms__intro" data-astro-cid-y5py4vqc> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><astro-island uid="Z26E4xS" prefix="r3" component-url="/_astro/FlowerBadge.BwQCr_Rl.js" component-export="default" renderer-url="/_astro/client.BlgjiPge.js" props="{&quot;initialFlower&quot;:[0,&quot;red-tulip&quot;],&quot;label&quot;:[0,&quot;Terms&quot;],&quot;petalCount&quot;:[0,4],&quot;size&quot;:[0,&quot;sm&quot;],&quot;style&quot;:[0,{&quot;alignSelf&quot;:[0,&quot;center&quot;]}],&quot;data-astro-cid-y5py4vqc&quot;:[0,true]}" ssr client="load" opts="{&quot;name&quot;:&quot;FlowerBadge&quot;,&quot;value&quot;:true}" await-children><span style="align-items:center;align-self:center;border-radius:999px;border-style:solid;border-width:1px;box-sizing:border-box;display:inline-flex;flex-shrink:0;font-family:&#x27;SN Pro Variable&#x27;, system-ui, sans-serif;font-weight:700;justify-content:center;letter-spacing:0.1em;line-height:1;max-width:100%;text-transform:uppercase;white-space:nowrap;width:fit-content;font-size:10px;padding:4px 9px;background-color:color-mix(in srgb, #E73C30 12%, transparent);border-color:transparent;color:#E73C30">Terms</span><!--astro:end--></astro-island> <h1 class="terms__title" data-astro-cid-y5py4vqc>Terms of Service</h1> <p class="terms__updated" data-astro-cid-y5py4vqc>Last updated: August 10, 2026</p> <p class="terms__lede" data-astro-cid-y5py4vqc>
+These Terms of Service ("Terms") are a binding agreement between you
+          ("you", "your") and Blume Corporation ("Blume", "we", "us"). They
+          govern your access to and use of the Blume desktop application,
+          websites, and related services (together, the "Service").
+</p> <p class="terms__lede" data-astro-cid-y5py4vqc>
+By downloading, installing, or using the Service, you agree to these
+          Terms. If you do not agree, do not use the Service.
+</p> </header> <article class="terms__body" data-astro-cid-y5py4vqc> <section aria-labelledby="eligibility" data-astro-cid-y5py4vqc> <h2 id="eligibility" data-astro-cid-y5py4vqc>1. Eligibility</h2> <p data-astro-cid-y5py4vqc>
+You must be at least 18 years old and able to form a binding
+            contract. If you use the Service on behalf of an organization, you
+            represent that you are authorized to bind it, and "you" includes
+            that organization.
+</p> </section> <section aria-labelledby="what-is" data-astro-cid-y5py4vqc> <h2 id="what-is" data-astro-cid-y5py4vqc>2. What the Service is</h2> <p data-astro-cid-y5py4vqc>
+Blume is a desktop companion ("sidecar") for AI coding assistants.
+            It helps you view and manage your AI coding sessions and agents,
+            monitor plan usage and quota, manage agent-configuration files, and
+            receive optional Automatic Improvements (AI-generated suggestions).
+            Blume reads data produced locally by your AI coding tools and, where
+            you connect them, retrieves usage information from your provider
+            accounts.
+</p> <p data-astro-cid-y5py4vqc>
+Blume is an independent product and is not affiliated with, endorsed
+            by, or sponsored by Anthropic, OpenAI, Cursor, or any other third
+            party referenced in the Service.
+</p> </section> <section aria-labelledby="license" data-astro-cid-y5py4vqc> <h2 id="license" data-astro-cid-y5py4vqc>3. License</h2> <p data-astro-cid-y5py4vqc>
+Subject to these Terms, Blume grants you a personal, limited,
+            non-exclusive, non-transferable, revocable license to install and
+            use the Service for your internal use. You may not:
+</p> <ul class="terms__list terms__list--lettered" data-astro-cid-y5py4vqc> <li data-astro-cid-y5py4vqc>copy, modify, distribute, sell, or sublicense the Service;</li><li data-astro-cid-y5py4vqc>reverse engineer or attempt to extract source code except where this restriction is prohibited by law;</li><li data-astro-cid-y5py4vqc>circumvent security, licensing, or usage limits;</li><li data-astro-cid-y5py4vqc>use the Service to build a competing product; or</li><li data-astro-cid-y5py4vqc>use the Service unlawfully or in violation of these Terms.</li> </ul> </section> <section aria-labelledby="third-party" data-astro-cid-y5py4vqc> <h2 id="third-party" data-astro-cid-y5py4vqc>4. Third-party tools, accounts, and content</h2> <p data-astro-cid-y5py4vqc>
+The Service interoperates with third-party AI coding assistants and
+            services (e.g., Claude Code, OpenAI Codex, Cursor) and may read data
+            those tools store on your device or retrieve information from your
+            accounts with them.
+</p> <ul class="terms__list" data-astro-cid-y5py4vqc> <li data-astro-cid-y5py4vqc>Your use of those third-party tools and accounts is governed by their terms and privacy policies, not ours. You are responsible for complying with them and for having the rights to access and process the data involved.</li><li data-astro-cid-y5py4vqc>Blume does not control and is not responsible for third-party tools, their availability, output, pricing, quotas, or data handling.</li><li data-astro-cid-y5py4vqc>Some features consume your third-party plan’s usage, quota, tokens, or rate limits, which may incur cost on those accounts. You are responsible for those costs.</li> </ul> </section> <section aria-labelledby="your-data" data-astro-cid-y5py4vqc> <h2 id="your-data" data-astro-cid-y5py4vqc>5. Your data; local-first processing</h2> <ul class="terms__list" data-astro-cid-y5py4vqc> <li data-astro-cid-y5py4vqc> <strong data-astro-cid-y5py4vqc>Local data.</strong> The Service primarily reads and stores
+              data on your device (for example, your AI tools' local session data
+              and a local Blume database). You retain all rights to your code,
+              conversations, and content ("Your Content"). Blume claims no
+              ownership of Your Content.
+</li> <li data-astro-cid-y5py4vqc> <strong data-astro-cid-y5py4vqc>No code upload by us for core features.</strong> For its
+              core and Automatic Improvements features, Blume does not transmit
+              Your Content (source code or conversation contents) to Blume's own
+              servers; analysis is performed locally and/or through the
+              third-party AI tools you connect, under their terms. Limited
+              product analytics are an exception (Section 8).
+</li> <li data-astro-cid-y5py4vqc> <strong data-astro-cid-y5py4vqc>Your responsibility.</strong> You are responsible for the
+              lawful collection and use of any data you process through the
+              Service, including data belonging to employers, clients, or
+              teammates.
+</li> <li data-astro-cid-y5py4vqc>
+See our <a href="/privacy" data-astro-cid-y5py4vqc>Privacy Policy</a> for details on data
+              handling.
+</li> </ul> </section> <section aria-labelledby="credentials" data-astro-cid-y5py4vqc> <h2 id="credentials" data-astro-cid-y5py4vqc>6. Credentials and security</h2> <p data-astro-cid-y5py4vqc>
+To show usage and connect providers, the Service may store
+            credentials, tokens, or cookies locally, using your operating
+            system's secure storage (e.g., the OS keychain) where available. You
+            are responsible for safeguarding your device and accounts. Blume is
+            not liable for unauthorized access resulting from your device, OS, or
+            account compromise. Do not share credentials you are not authorized
+            to use.
+</p> </section> <section aria-labelledby="ai-features" data-astro-cid-y5py4vqc> <h2 id="ai-features" data-astro-cid-y5py4vqc>7. AI features, Automatic Improvements, and beta</h2> <ul class="terms__list" data-astro-cid-y5py4vqc> <li data-astro-cid-y5py4vqc>
+AI-generated output (including suggestions to change configuration
+              or files) may be inaccurate, incomplete, or unsuitable and is
+              provided for your review only. You are solely responsible for
+              reviewing and for any changes you choose to apply, and for their
+              effects on your code, tools, and repositories. Changes are applied
+              only when you explicitly choose to apply them; some suggestions
+              install automatically-executing commands (hooks). Review these
+              especially carefully.
+</li> <li data-astro-cid-y5py4vqc>
+Features labeled beta, preview, or experimental may be unstable,
+              change, or be removed, and are provided with no commitment.
+</li> <li data-astro-cid-y5py4vqc>
+The Automatic Improvements feature is described in Section 2 and
+              is governed by these Terms.
+</li> </ul> </section> <section aria-labelledby="telemetry" data-astro-cid-y5py4vqc> <h2 id="telemetry" data-astro-cid-y5py4vqc>8. Telemetry and crash reporting</h2> <p data-astro-cid-y5py4vqc>
+If enabled, the Service collects limited usage analytics and
+            crash/diagnostic data to operate and improve the Service, processed
+            via our service providers. This is intended to exclude Your Content
+            (source code, conversation contents, and the contents of
+            suggestions). You may disable analytics in settings where offered.
+            See the <a href="/privacy" data-astro-cid-y5py4vqc>Privacy Policy</a>.
+</p> </section> <section aria-labelledby="updates" data-astro-cid-y5py4vqc> <h2 id="updates" data-astro-cid-y5py4vqc>9. Updates</h2> <p data-astro-cid-y5py4vqc>
+The Service may automatically download and install updates to
+            function correctly and securely. You consent to these updates. We may
+            add, change, or remove features at any time.
+</p> </section> <section aria-labelledby="fees" data-astro-cid-y5py4vqc> <h2 id="fees" data-astro-cid-y5py4vqc>10. Fees and paid plans</h2> <p data-astro-cid-y5py4vqc>
+The Service is currently provided free of charge; we may
+            introduce paid features in the future on notice. Any costs you
+            incur on third-party AI provider accounts you connect to the
+            Service are separate from, and not included in, any Blume fees,
+            and remain your responsibility.
+</p> </section> <section aria-labelledby="referrals" data-astro-cid-y5py4vqc> <h2 id="referrals" data-astro-cid-y5py4vqc>11. Referrals and invites</h2> <p data-astro-cid-y5py4vqc>
+Any referral or invite program is offered at our discretion and
+            subject to these Terms. We may modify,
+            suspend, or terminate it, and may void rewards obtained through
+            fraud, abuse, or violation of these Terms.
+</p> </section> <section aria-labelledby="acceptable-use" data-astro-cid-y5py4vqc> <h2 id="acceptable-use" data-astro-cid-y5py4vqc>12. Acceptable use</h2> <p data-astro-cid-y5py4vqc>You will not:</p> <ul class="terms__list" data-astro-cid-y5py4vqc> <li data-astro-cid-y5py4vqc>use the Service to violate any law or third party’s rights;</li><li data-astro-cid-y5py4vqc>access data or accounts you are not authorized to access;</li><li data-astro-cid-y5py4vqc>attempt to disrupt, overload, or gain unauthorized access to the Service or related systems; or</li><li data-astro-cid-y5py4vqc>use the Service to develop or operate malware or to harm others.</li> </ul> </section> <section aria-labelledby="feedback" data-astro-cid-y5py4vqc> <h2 id="feedback" data-astro-cid-y5py4vqc>13. Feedback</h2> <p data-astro-cid-y5py4vqc>
+If you give us feedback or suggestions, you grant Blume a perpetual,
+            irrevocable, worldwide, royalty-free license to use them without
+            restriction or obligation to you.
+</p> </section> <section aria-labelledby="ip" data-astro-cid-y5py4vqc> <h2 id="ip" data-astro-cid-y5py4vqc>14. Intellectual property</h2> <p data-astro-cid-y5py4vqc>
+The Service, including its software, design, and trademarks, is owned
+            by Blume or its licensors and protected by law. Except for the
+            license in Section 3, no rights are granted to you. All third-party
+            names and marks are the property of their respective owners.
+</p> </section> <section aria-labelledby="disclaimers" data-astro-cid-y5py4vqc> <h2 id="disclaimers" data-astro-cid-y5py4vqc>15. Disclaimers</h2> <p class="terms__legal" data-astro-cid-y5py4vqc>
+THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE," WITHOUT
+            WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+            MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT,
+            ACCURACY, AND UNINTERRUPTED OR ERROR-FREE OPERATION. BLUME DOES NOT
+            WARRANT THAT AI OUTPUT OR SUGGESTIONS ARE CORRECT, SAFE, OR SUITABLE.
+</p> </section> <section aria-labelledby="liability" data-astro-cid-y5py4vqc> <h2 id="liability" data-astro-cid-y5py4vqc>16. Limitation of liability</h2> <p class="terms__legal" data-astro-cid-y5py4vqc>
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, BLUME AND ITS SUPPLIERS WILL
+            NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL,
+            OR EXEMPLARY DAMAGES, OR FOR LOST PROFITS, DATA, OR GOODWILL, ARISING
+            FROM OR RELATED TO THE SERVICE, INCLUDING FROM APPLYING SUGGESTIONS,
+            EXECUTING INSTALLED HOOKS, THIRD-PARTY USAGE OR CHARGES, OR DATA
+            LOSS. BLUME'S TOTAL LIABILITY FOR ALL CLAIMS WILL NOT EXCEED THE
+            GREATER OF USD $100 OR THE AMOUNTS YOU PAID BLUME FOR THE SERVICE
+            IN THE 12 MONTHS BEFORE THE CLAIM. SOME JURISDICTIONS DO NOT ALLOW
+            CERTAIN LIMITATIONS, SO SOME OF THE ABOVE MAY NOT APPLY TO YOU.
+</p> </section> <section aria-labelledby="indemnification" data-astro-cid-y5py4vqc> <h2 id="indemnification" data-astro-cid-y5py4vqc>17. Indemnification</h2> <p data-astro-cid-y5py4vqc>
+You will indemnify and hold harmless Blume from claims, losses, and
+            expenses (including reasonable legal fees) arising from your use of
+            the Service, Your Content, your violation of these Terms, or your
+            violation of any law or third-party rights.
+</p> </section> <section aria-labelledby="termination" data-astro-cid-y5py4vqc> <h2 id="termination" data-astro-cid-y5py4vqc>18. Termination</h2> <p data-astro-cid-y5py4vqc>
+You may stop using the Service at any time. We may suspend or
+            terminate your access at any time, including for violation of these
+            Terms. Sections that by their nature should survive (including 4–8,
+            13–19) survive termination.
+</p> </section> <section aria-labelledby="governing-law" data-astro-cid-y5py4vqc> <h2 id="governing-law" data-astro-cid-y5py4vqc>19. Governing law and disputes</h2> <p data-astro-cid-y5py4vqc>
+These Terms are governed by the laws of the State of Delaware, USA,
+            without regard to conflict-of-laws rules. Any dispute arising out of
+            or relating to these Terms or the Service will be brought
+            exclusively in the state or federal courts located in New Castle
+            County, Delaware, and you consent to the personal jurisdiction of
+            those courts. Each party waives any right to a jury trial.
+</p> </section> <section aria-labelledby="changes" data-astro-cid-y5py4vqc> <h2 id="changes" data-astro-cid-y5py4vqc>20. Changes to these Terms</h2> <p data-astro-cid-y5py4vqc>
+We may update these Terms from time to time. Material changes will be
+            indicated by updating the "Last updated" date and, where
+            appropriate, additional notice. Your continued use after changes take
+            effect constitutes acceptance.
+</p> </section> <section aria-labelledby="contact" data-astro-cid-y5py4vqc> <h2 id="contact" data-astro-cid-y5py4vqc>21. Contact</h2> <p data-astro-cid-y5py4vqc>
+Blume Corporation<br data-astro-cid-y5py4vqc>
+2810 N Church St STE 89245, Wilmington, DE 19802<br data-astro-cid-y5py4vqc> <a href="mailto:hello@blume.codes" data-astro-cid-y5py4vqc>hello@blume.codes</a> </p> </section> </article> </div> </main> <footer class="site-footer" data-astro-cid-gcn2mc3v> <picture class="site-footer__media" aria-hidden="true" data-astro-cid-gcn2mc3v> <source media="(min-width: 1440px)" srcset="/images/sidecar/bg-3072.avif" type="image/avif" data-astro-cid-gcn2mc3v> <source media="(min-width: 768px)" srcset="/images/sidecar/bg-1280.avif" type="image/avif" data-astro-cid-gcn2mc3v> <source media="(min-width: 1440px)" srcset="/images/sidecar/bg-3072.webp" type="image/webp" data-astro-cid-gcn2mc3v> <source media="(min-width: 768px)" srcset="/images/sidecar/bg-1280.webp" type="image/webp" data-astro-cid-gcn2mc3v> <img src="/images/sidecar/bg-768.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" data-astro-cid-gcn2mc3v> </picture> <div class="site-footer__shade" aria-hidden="true" data-astro-cid-gcn2mc3v></div> <div class="site-footer__inner" data-astro-cid-gcn2mc3v> <div class="site-footer__logo" data-astro-cid-gcn2mc3v> <link rel="preload" as="image" href="/images/flowers/red-tulip/icon.png"/><span class="blume-lockup blume-lockup--footer blume-lockup--on-photo" style="--blume-mark-start-trim:calc(var(--blume-frame, 34px) * 0.35897436);--blume-mark-end-trim:calc(var(--blume-frame, 34px) * 0.30128205)" role="img" aria-label="Blume"><img class="blume-lockup__mark" src="/images/flowers/red-tulip/icon.png" alt="" draggable="false"/><span class="blume-lockup__word" aria-hidden="true">blume</span></span> </div> <p class="site-footer__statement" data-astro-cid-gcn2mc3v>Know what your agents built.</p> <div class="site-footer__bottom" data-astro-cid-gcn2mc3v> <nav class="site-footer__links" aria-label="Footer" data-astro-cid-gcn2mc3v> <a href="/" data-astro-cid-gcn2mc3v>Home</a><a href="/docs" data-astro-cid-gcn2mc3v>Docs</a><a href="/blog" data-astro-cid-gcn2mc3v>Blog</a><a href="/about" data-astro-cid-gcn2mc3v>About</a><a href="/careers" data-astro-cid-gcn2mc3v>Careers</a><a href="/privacy" data-astro-cid-gcn2mc3v>Privacy &amp; Security</a><a href="/terms" data-astro-cid-gcn2mc3v>Terms</a><a href="mailto:hello@blume.codes" data-astro-cid-gcn2mc3v>Feedback or questions? hello@blume.codes</a> </nav> <div class="site-footer__legal" data-astro-cid-gcn2mc3v> <p class="site-footer__copyright" data-astro-cid-gcn2mc3v>© 2026 Blume</p> <a href="https://x.com/BlumeDotCodes" target="_blank" rel="noopener noreferrer" aria-label="Follow Blume on X" class="site-footer__social" data-astro-cid-gcn2mc3v> <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-gcn2mc3v> <path d="M18.244 2.25h3.271l-7.155 8.181 8.404 11.319h-6.593l-5.159-6.733-5.901 6.733H1.84l7.641-8.728L1.333 2.25h6.76l4.663 6.06 5.488-6.06z" data-astro-cid-gcn2mc3v></path> </svg> <span class="sr-only" data-astro-cid-gcn2mc3v>X (formerly Twitter)</span> </a> </div> </div> </div> </footer>   <astro-island uid="1DTy7n" component-url="/_astro/FloatingFlowerPicker.CCRngkmT.js" component-export="default" renderer-url="/_astro/client.BlgjiPge.js" props="{&quot;appearance&quot;:[0,true]}" ssr client="only" opts="{&quot;name&quot;:&quot;FloatingFlowerPicker&quot;,&quot;value&quot;:&quot;react&quot;}"></astro-island> </body> </html>   <script type="module" src="/_astro/terms.astro_astro_type_script_index_0_lang.DfM3DwM6.js"></script>

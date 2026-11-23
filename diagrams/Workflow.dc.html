@@ -1,0 +1,222 @@
+<!doctype html>
+<meta charset="utf-8"><style data-dc-design-system-vars>@layer{:root{--canvas:#fafbfc;--surface-0:#ffffff;--surface-100:#f6f7f9;--surface-200:#eef0f3;--ink:#151718;--ink-muted:#60656d;--ink-inverse:#ffffff;--hairline:#e4e7eb;--border:#e1e4e8;--border-strong:#767b82;--brand:#1356c7;--brand-hover:#0e449f;--brand-tint:#e7effc;--on-brand:#ffffff;--deep:#0b1f44;--on-deep:#ffffff;--success:#1d7a39;--warning:#9a5500;--danger:#c2211b;--success-tint:#e3f2e8;--warning-tint:#f8ecdc;--focus:#1356c7;--on-deep-muted:#b9c6de;--viz-empty:#e3e6ea;--viz-1:#c9daf6;--viz-2:#8fb1ec;--viz-3:#4a7fd9;--viz-4:#1356c7;--viz-5:#0b1f44;--viz-highlight:#d97706;--glow:#1356c712;--glow-warm:#d977060f;--shadow-raise:0 1px 2px rgba(16, 24, 40, 0.05), 0 2px 6px -2px rgba(16, 24, 40, 0.08);--shadow-card:0 1px 2px rgba(16, 24, 40, 0.05), 0 4px 12px -4px rgba(16, 24, 40, 0.12);--shadow-panel:0 1px 2px rgba(16, 24, 40, 0.04), 0 10px 24px -14px rgba(16, 24, 40, 0.2);--shadow-primary:0 1px 2px rgba(11, 31, 68, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.14);--shadow-float:0 4px 8px rgba(16, 24, 40, 0.04), 0 16px 32px -8px rgba(16, 24, 40, 0.16);--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-6:24px;--space-8:32px;--space-12:48px;--radius-xs:5px;--radius-sm:6px;--radius-md:8px;--radius-lg:10px;--radius-xl:12px;--radius-full:999px;--font-display:Geist, -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;--font-ui:Geist, -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;--font-mono:"Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace}}</style>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Blume — delivery review pipeline</title>
+<script src="./_runtime/react.js"></script>
+<script src="./_runtime/react-dom.js"></script>
+<script src="./_runtime/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#fafbfc}
+  .band{background:radial-gradient(600px 360px at 0% 0%,rgba(19,86,199,.07),transparent 70%),radial-gradient(520px 320px at 100% 100%,rgba(217,119,6,.06),transparent 70%),#fafbfc}
+  .card{background:#ffffff;border:1px solid #e1e4e8;border-radius:10px;box-shadow:0 1px 2px rgba(16,24,40,.04),0 10px 24px -14px rgba(16,24,40,.2)}
+  .pill{display:inline-flex;align-items:center;padding:3px 8px;border-radius:5px;font-size:12px;font-weight:600}
+  .mono{font-family:"Geist Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+  .nlab{font-size:12px;font-weight:600;fill:#151718}
+  .nsub{font-size:10.5px;fill:#60656d}
+  .etag{font-size:10.5px;font-weight:600;fill:#60656d}
+  .edge{stroke:#767b82;stroke-width:1.5;fill:none}
+  .edge-em{stroke:#1356c7;stroke-width:2.25;fill:none}
+  .edge-sec{stroke:#9a5500;stroke-width:2;fill:none}
+  .edge-dash{stroke:#8a9099;stroke-width:1.5;stroke-dasharray:5 4;fill:none}
+  .lanebg{fill:#f6f7f9}
+  .lanebg2{fill:#ffffff}
+  .lblbg{fill:#fafbfc}
+</style>
+</helmet>
+<div style="font-family: Geist, system-ui, sans-serif; color: #151718; background: #fafbfc; min-height: 100%;">
+
+  <section style="background:linear-gradient(160deg,#e7effc 0%,#ffffff 65%);border-bottom:1px solid #e4e7eb;padding:26px 32px 22px;">
+    <div style="max-width:1216px;margin:0 auto;">
+      <p style="margin:0;display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+        <span class="pill" style="background:#0b1f44;color:#ffffff;">TRACE</span>
+        <span class="pill" style="background:#e3f2e8;color:#1d7a39;">EVERY STEP RECOVERED FROM THE BINARY</span>
+      </p>
+      <h1 style="margin:10px 0 4px;font-size:36px;line-height:43px;font-weight:600;letter-spacing:-0.025em;">Delivery review pipeline</h1>
+      <p style="margin:0;font-size:17px;line-height:26px;color:#60656d;max-width:720px;">The agent loop runs to a done definition; evidence pins to an exact revision; a person makes one approve. This is the loop the whole product exists for.</p>
+    </div>
+  </section>
+
+  <main class="band" style="padding:24px 32px 64px;">
+    <div style="max-width:1216px;margin:0 auto;">
+
+      <article class="card" style="padding:20px 24px 8px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:8px;">
+          <span style="font-size:13px;font-weight:600;">Four lanes — reviewer, harness, control plane, evidence</span>
+          <span style="display:flex;gap:10px;flex-wrap:wrap;font-size:11px;color:#60656d;align-items:center;">
+            <span><i style="width:8px;height:8px;border-radius:2px;background:#1356c7;display:inline-block;margin-right:4px"></i>main path</span>
+            <span><i style="width:8px;height:8px;border-radius:2px;background:#9a5500;display:inline-block;margin-right:4px"></i>trust boundary</span>
+            <span><i style="width:8px;height:8px;border-radius:2px;background:#e3e6ea;display:inline-block;margin-right:4px"></i>async / pull</span>
+          </span>
+        </div>
+
+        <svg viewBox="0 0 1205 640" width="100%" role="img" aria-label="Blume delivery review pipeline">
+          <defs>
+            <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#767b82"/></marker>
+            <marker id="ah-em" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#1356c7"/></marker>
+            <marker id="ah-sec" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#9a5500"/></marker>
+            <filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="1" stdDeviation="1.4" flood-color="rgba(16,24,40,0.14)"/></filter>
+          </defs>
+
+          <!-- lanes -->
+          <rect x="16" y="64" width="1173" height="122" class="lanebg" rx="10"/>
+          <rect x="16" y="186" width="1173" height="122" class="lanebg2" rx="10" stroke="#eef0f3"/>
+          <rect x="16" y="308" width="1173" height="122" class="lanebg" rx="10"/>
+          <rect x="16" y="430" width="1173" height="122" class="lanebg2" rx="10" stroke="#eef0f3"/>
+          <text x="28" y="84" class="etag">REVIEWER</text>
+          <text x="28" y="206" class="etag">AGENT HARNESS + BRIDGE</text>
+          <text x="28" y="328" class="etag">CONTROL PLANE</text>
+          <text x="28" y="450" class="etag">EVIDENCE &amp; TESTS</text>
+
+          <!-- phases -->
+          <text x="190" y="46" class="etag" fill="#8a9099" text-anchor="middle">BRIEF</text>
+          <rect x="255" y="34" width="490" height="18" rx="9" fill="#e7effc"/>
+          <text x="500" y="47" class="etag" fill="#1356c7" text-anchor="middle">BUILD + TEST — THE AGENTIC LOOP</text>
+          <rect x="765" y="34" width="410" height="18" rx="9" fill="#eef0f3"/>
+          <text x="970" y="47" class="etag" text-anchor="middle">REVIEW + SHIP</text>
+
+          <!-- edges -->
+          <path class="edge" d="M168 125 H255" marker-end="url(#ah)"/>
+          <path class="edge-em" d="M383 125 V216" marker-end="url(#ah-em)"/>
+          <path class="edge" d="M511 258 H625" marker-end="url(#ah)"/>
+          <path class="edge-sec" d="M625 278 H753 V330 H825" marker-end="url(#ah-sec)"/>
+          <path class="edge-em" d="M753 258 H880" marker-end="url(#ah-em)"/>
+          <path class="edge" d="M944 280 V430" marker-end="url(#ah)"/>
+          <path class="edge" d="M944 486 H1010" marker-end="url(#ah)"/>
+          <path class="edge-dash" d="M1010 466 V186" marker-end="url(#ah)"/>
+          <path class="edge" d="M1078 125 V325" marker-end="url(#ah)"/>
+          <path class="edge-em" d="M1145 125 H1160 V380 H1140" marker-end="url(#ah-em)"/>
+
+          <!-- edge labels -->
+          <g font-family="Geist Mono, monospace">
+            <rect class="lblbg" x="186" y="108" width="66" height="14" rx="4"/><text x="219" y="119" text-anchor="middle" class="etag">criteria</text>
+            <rect class="lblbg" x="398" y="158" width="96" height="14" rx="4"/><text x="446" y="169" text-anchor="middle" class="etag" fill="#1356c7">task tree</text>
+            <rect class="lblbg" x="528" y="240" width="84" height="14" rx="4"/><text x="570" y="251" text-anchor="middle" class="etag">stdio MCP</text>
+            <rect class="lblbg" x="662" y="296" width="72" height="14" rx="4"/><text x="698" y="307" text-anchor="middle" class="etag" fill="#9a5500">token</text>
+            <rect class="lblbg" x="766" y="240" width="84" height="14" rx="4"/><text x="808" y="251" text-anchor="middle" class="etag">context</text>
+            <rect class="lblbg" x="952" y="344" width="90" height="14" rx="4"/><text x="997" y="355" text-anchor="middle" class="etag">suite runs</text>
+            <rect class="lblbg" x="948" y="464" width="70" height="14" rx="4"/><text x="983" y="475" text-anchor="middle" class="etag">pins</text>
+            <rect class="lblbg" x="1022" y="312" width="96" height="14" rx="4"/><text x="1070" y="323" text-anchor="middle" class="etag">listForView</text>
+            <rect class="lblbg" x="1088" y="238" width="72" height="14" rx="4"/><text x="1124" y="249" text-anchor="middle" class="etag" fill="#1356c7">approve</text>
+          </g>
+
+          <!-- nodes: reviewer lane -->
+          <g>
+            <rect x="40" y="98" width="128" height="54" rx="10" fill="#ffffff" stroke="#e1e4e8" filter="url(#sh)"/>
+            <rect x="40" y="98" width="128" height="5" rx="3" fill="#e3e6ea"/>
+            <text x="54" y="120" class="nlab" font-family="Geist, sans-serif" font-weight="600">Reviewer</text>
+            <text x="54" y="136" class="nsub" font-family="Geist, sans-serif">writes the brief</text>
+          </g>
+          <g>
+            <rect x="255" y="98" width="128" height="54" rx="10" fill="#ffffff" stroke="#e1e4e8" filter="url(#sh)"/>
+            <rect x="255" y="98" width="128" height="5" rx="3" fill="#c9daf6"/>
+            <text x="269" y="120" class="nlab" font-family="Geist, sans-serif" font-weight="600">Outcome Brief</text>
+            <text x="269" y="136" class="nsub" font-family="Geist, sans-serif">acceptance criteria</text>
+          </g>
+          <g>
+            <rect x="884" y="98" width="128" height="54" rx="10" fill="#ffffff" stroke="#e1e4e8" filter="url(#sh)"/>
+            <rect x="884" y="98" width="128" height="5" rx="3" fill="#c9daf6"/>
+            <text x="898" y="120" class="nlab" font-family="Geist, sans-serif" font-weight="600">Outcome Review</text>
+            <text x="898" y="136" class="nsub" font-family="Geist, sans-serif">pulls ledger + evidence</text>
+          </g>
+          <g>
+            <rect x="1078" y="98" width="96" height="54" rx="10" fill="#ffffff" stroke="#c9d3e4" stroke-width="1.5" filter="url(#sh)"/>
+            <rect x="1078" y="98" width="96" height="5" rx="3" fill="#1356c7"/>
+            <text x="1092" y="120" class="nlab" font-family="Geist, sans-serif" font-weight="600">Approve</text>
+            <text x="1092" y="136" class="nsub" font-family="Geist, sans-serif">one decision</text>
+          </g>
+
+          <!-- nodes: harness lane -->
+          <g>
+            <rect x="255" y="216" width="128" height="54" rx="10" fill="#ffffff" stroke="#e1e4e8" filter="url(#sh)"/>
+            <rect x="255" y="216" width="128" height="5" rx="3" fill="#e3e6ea"/>
+            <text x="269" y="238" class="nlab" font-family="Geist, sans-serif" font-weight="600">Harness</text>
+            <text x="269" y="254" class="nsub" font-family="Geist, sans-serif">Claude Code · Codex</text>
+          </g>
+          <g>
+            <rect x="625" y="216" width="128" height="54" rx="10" fill="#ffffff" stroke="#e1e4e8" filter="url(#sh)"/>
+            <rect x="625" y="216" width="128" height="5" rx="3" fill="#4a7fd9"/>
+            <text x="639" y="238" class="nlab" font-family="Geist, sans-serif" font-weight="600">Plugin Bridge</text>
+            <text x="639" y="254" class="nsub" font-family="Geist, sans-serif">MCP tools + context</text>
+          </g>
+          <g>
+            <rect x="880" y="216" width="128" height="54" rx="10" fill="#ffffff" stroke="#e1e4e8" filter="url(#sh)"/>
+            <rect x="880" y="216" width="128" height="5" rx="3" fill="#4a7fd9"/>
+            <text x="894" y="238" class="nlab" font-family="Geist, sans-serif" font-weight="600">Delivery Loop</text>
+            <text x="894" y="254" class="nsub" font-family="Geist, sans-serif">plan → build → check</text>
+          </g>
+
+          <!-- nodes: control lane -->
+          <g>
+            <rect x="825" y="330" width="128" height="54" rx="10" fill="#ffffff" stroke="#e1e4e8" filter="url(#sh)"/>
+            <rect x="825" y="330" width="128" height="5" rx="3" fill="#0b1f44"/>
+            <text x="839" y="352" class="nlab" font-family="Geist, sans-serif" font-weight="600">Delivery Ledger</text>
+            <text x="839" y="368" class="nsub" font-family="Geist, sans-serif">SQLite rows</text>
+          </g>
+          <g>
+            <rect x="1076" y="330" width="100" height="54" rx="10" fill="#ffffff" stroke="#e1e4e8" filter="url(#sh)"/>
+            <rect x="1076" y="330" width="100" height="5" rx="3" fill="#1356c7"/>
+            <text x="1090" y="352" class="nlab" font-family="Geist, sans-serif" font-weight="600">Release</text>
+            <text x="1090" y="368" class="nsub" font-family="Geist, sans-serif">merge + deploy</text>
+          </g>
+
+          <!-- nodes: evidence lane -->
+          <g>
+            <rect x="880" y="430" width="128" height="54" rx="10" fill="#ffffff" stroke="#e1e4e8" filter="url(#sh)"/>
+            <rect x="880" y="430" width="128" height="5" rx="3" fill="#e3e6ea"/>
+            <text x="894" y="452" class="nlab" font-family="Geist, sans-serif" font-weight="600">Delivery Suite</text>
+            <text x="894" y="468" class="nsub" font-family="Geist Mono, monospace">blume_tests · failing test first</text>
+          </g>
+          <g>
+            <rect x="1010" y="430" width="128" height="54" rx="10" fill="#ffffff" stroke="#e1e4e8" filter="url(#sh)"/>
+            <rect x="1010" y="430" width="128" height="5" rx="3" fill="#0b1f44"/>
+            <text x="1024" y="452" class="nlab" font-family="Geist, sans-serif" font-weight="600">Evidence Pins</text>
+            <text x="1024" y="468" class="nsub" font-family="Geist, sans-serif">pinned to revision</text>
+          </g>
+        </svg>
+      </article>
+
+      <div style="display:flex;flex-wrap:wrap;gap:24px;margin-top:24px;">
+        <section class="card" style="flex:1 1 300px;min-width:0;padding:20px 24px;">
+          <h3 style="margin:0 0 10px;font-size:13px;font-weight:600;color:#1356c7;">AGENTIC LOOP</h3>
+          <ul style="margin:0;padding-left:18px;font-size:14px;line-height:21px;">
+            <li style="margin-bottom:6px;">The harness builds against acceptance criteria from the brief</li>
+            <li style="margin-bottom:6px;">The bridge serves <span class="mono" style="font-size:12px">blume_context</span> and registers evidence tools</li>
+            <li>Bugs start with a failing test, then fix and rerun</li>
+          </ul>
+        </section>
+        <section class="card" style="flex:1 1 300px;min-width:0;padding:20px 24px;">
+          <h3 style="margin:0 0 10px;font-size:13px;font-weight:600;color:#60656d;">EVIDENCE CONTRACT</h3>
+          <ul style="margin:0;padding-left:18px;font-size:14px;line-height:21px;">
+            <li style="margin-bottom:6px;">Only passing runs pin evidence to the exact revision</li>
+            <li style="margin-bottom:6px;">Suites rerun before every review</li>
+            <li>Review pulls the ledger via <span class="mono" style="font-size:12px">db:conversations:listForView</span></li>
+          </ul>
+        </section>
+        <section class="card" style="flex:1 1 300px;min-width:0;padding:20px 24px;">
+          <h3 style="margin:0 0 10px;font-size:13px;font-weight:600;color:#1d7a39;">ONE DECISION</h3>
+          <ul style="margin:0;padding-left:18px;font-size:14px;line-height:21px;">
+            <li style="margin-bottom:6px;">The reviewer sees the diff, checks and screenshots</li>
+            <li style="margin-bottom:6px;">A single approve releases the revision</li>
+            <li>Lifecycle: Start → Plan → Build → Test → Review → Merge → Release → Done</li>
+          </ul>
+        </section>
+      </div>
+
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1080}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "blume",
+  "version": "0.26.5",
+  "node": ">=24",
+  "files": {
+    "bridge.mjs": "bf2e87a331dc60998ec0bbec1ba86f960119197e5eeecea567e71dfbcb3f307c",
+    "setup.mjs": "3c84d7387a7056ac999efe17cc4fc7bdcb23f08b4952814ed9ff25afb7c99922",
+    "hook.mjs": "316abf7f0ba66c1156f1869a7c039d5eb736136fb77e4af4e3abd1e70b08567f",
+    "codex-session.mjs": "752cc51cde033f55dd30ad8f6248934611d261858c14cfb5aab32af438d0b866",
+    "cloud-owner.mjs": "56167bd57b2048b73ed297323fb71370d381e1757ecfa37792afd25129f826e0",
+    "claude-metadata.mjs": "2641811ec6363ef36e5f87427bc30f5bcbb317f2f428f5765ff3163df603fc80",
+    "mac-tools.mjs": "a0ce011400d0858c4aec03f9fbba8f634dae89ac27f1768e80830da684068f4e",
+    "mac-command.mjs": "376d24f056fc525f11076544dcadab6985197e7adef64ad229faae715e505be4"
+  }
+}

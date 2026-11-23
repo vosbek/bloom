@@ -1,0 +1,1 @@
+import{r as e}from"./index.CEK5zJnf.js";import{c as r}from"./client.CkorLPSu.js";import{f as a}from"./events.wRbvrdzT.js";const t=3e4;function s(){return e.useEffect(()=>{const o=window.setTimeout(()=>{r(a,{path:window.location.pathname,thresholdMs:t})},t);return()=>{window.clearTimeout(o)}},[]),null}export{s as default};

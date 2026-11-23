@@ -1,0 +1,1 @@
+import{f as i,b as f}from"./flowerStore.mQ2fEwdj.js";import"./globalPetalStore.C-ekeyrZ.js";import"./index.CEK5zJnf.js";i.subscribe(o=>{const r=document.querySelectorAll("link[data-flower-icon]");for(const t of r){const e=t.getAttribute("data-flower-icon");e&&t.setAttribute("href",f(o,e))}});
