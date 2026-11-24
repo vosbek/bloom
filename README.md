@@ -62,6 +62,11 @@ The pages use the DevPin design system (`ds/devpin/tokens.json`, light+dark) and
 - **Runtime proof**: deep-link scenario (3/3 steps), Electron process tree (12 utility workers), renderer confirmed loading **our** extracted path
 - **Website parity**: word-for-word DOM text, screenshot diff 0.01%
 
-## Provenance and license
+## License
 
-The Blume application is © its authors; this repo contains reverse-engineering artifacts produced for interoperability research from a lawfully obtained installer, plus a mirror of public website assets. The extracted code in `desktop/app/` is the vendor's minified production output — kept as the ground truth this documentation describes, not as a fork. No vendor secrets (tokens, keys) are included; storage values, cookies and auth headers were never captured.
+Two kinds of material live here, and the licensing says so precisely:
+
+- **[LICENSE](LICENSE)** (MIT) — covers our original work: all documentation, the DevPin diagram pages, the build/serve scripts, and the analysis artifacts. Use, modify, and reuse those freely.
+- **[NOTICE.md](NOTICE.md)** — names the third-party material (`desktop/app/`, `desktop/plugin-bundle/`, `website/`): the extracted Blume application payload and public site assets. That material retains its original copyright; it is included as reverse-engineering reference from a lawfully obtained copy and is **not** relicensed by this repo. The `node_modules` package licenses (MIT/BSD/ISC) stay in place as those licenses require.
+
+Produced for interoperability research; every claim traces to evidence in [docs/evidence.md](docs/evidence.md). No vendor secrets (tokens, keys) are included — storage values, cookies, and auth headers were never captured.
