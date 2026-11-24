@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Grant intake — record a written reuse permission</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canvas:#fafbfc;--surface-0:#ffffff;--surface-100:#f6f7f9;--ink:#151718;--ink-muted:#60656d;
+    --border:#e1e4e8;--border-strong:#767b82;--brand:#1356c7;--brand-hover:#0e449f;--brand-tint:#e7effc;
+    --success:#1d7a39;--success-tint:#e3f2e8;--warning:#9a5500;--warning-tint:#f8ecdc;--deep:#0b1f44;
+    --hairline:#e4e7eb;--radius-md:8px;--radius-lg:10px;
+    --shadow-panel:0 1px 2px rgba(16,24,40,.04),0 10px 24px -14px rgba(16,24,40,.2);
+    --font:Geist,-apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--canvas);color:var(--ink);font:14px/20px var(--font)}
+  .wrap{max-width:960px;margin:0 auto;padding:24px 32px 64px}
+  h1{font-size:28px;line-height:34px;font-weight:600;letter-spacing:-.02em;margin:10px 0 4px}
+  .hero{background:linear-gradient(160deg,#e7effc 0%,#ffffff 65%);border-bottom:1px solid var(--hairline);padding:22px 32px}
+  .hero .wrap{padding:0 0 0}
+  .sub{color:var(--ink-muted);font-size:15px;max-width:720px}
+  .card{background:var(--surface-0);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-panel);padding:20px 24px;margin-top:24px}
+  h2{margin:0 0 4px;font-size:20px;font-weight:600;letter-spacing:-.015em}
+  h2 + .hint{margin:0 0 16px;color:var(--ink-muted);font-size:13px}
+  label{display:block;font-weight:600;font-size:12px;color:var(--ink-muted);margin:12px 0 4px;letter-spacing:.02em}
+  input[type=text],input[type=email],input[type=date],select,textarea{
+    width:100%;font:14px/20px var(--font);color:var(--ink);background:var(--surface-0);
+    border:1px solid var(--border-strong);border-radius:6px;padding:8px 10px;outline:0}
+  input:focus,select:focus,textarea:focus{border-color:var(--brand);box-shadow:0 0 0 2px rgba(19,86,199,.25)}
+  textarea{min-height:88px;resize:vertical;font-family:var(--mono);font-size:13px}
+  .row{display:flex;gap:16px;flex-wrap:wrap}
+  .row>div{flex:1 1 220px;min-width:0}
+  .boxes{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .box{display:inline-flex;align-items:center;gap:8px;background:var(--surface-0);border:1px solid var(--border);
+    border-radius:6px;padding:8px 12px;cursor:pointer;font-size:14px;user-select:none}
+  .box input{accent-color:var(--brand);margin:0}
+  .box.on{background:var(--brand-tint);border-color:var(--brand)}
+  .note{background:var(--brand-tint);border:1px solid #c7d9f4;border-radius:var(--radius-md);padding:12px 16px;font-size:13.5px;color:var(--deep);margin:16px 0 0}
+  .warn{background:var(--warning-tint);border:1px solid #e8cfa4;border-radius:var(--radius-md);padding:12px 16px;font-size:13.5px;color:var(--warning);margin:12px 0 0;display:none}
+  .check{list-style:none;padding:0;margin:8px 0 0}
+  .check li{display:flex;gap:10px;align-items:flex-start;padding:7px 10px;border-radius:6px;font-size:14px;margin-bottom:4px}
+  .check li::before{content:"";width:10px;height:10px;border-radius:3px;margin-top:5px;flex:0 0 10px}
+  .check li.ok{background:var(--success-tint)}
+  .check li.ok::before{background:var(--success)}
+  .check li.miss{background:var(--warning-tint)}
+  .check li.miss::before{background:var(--warning)}
+  .check li .d{color:var(--ink-muted);font-size:12px;display:block}
+  .out{background:var(--surface-100);border:1px solid var(--hairline);border-radius:var(--radius-md);
+    font:12.5px/18px var(--mono);white-space:pre-wrap;color:var(--ink);padding:14px 16px;max-height:340px;overflow:auto}
+  .outbar{display:flex;justify-content:space-between;align-items:center;margin:16px 0 6px}
+  .fname{font:600 12px var(--mono);color:var(--ink-muted)}
+  .btn{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 14px;border-radius:6px;
+    background:var(--brand);color:#fff;border:0;font:600 13px var(--font);cursor:pointer;
+    box-shadow:0 1px 2px rgba(11,31,68,.25),inset 0 1px 0 rgba(255,255,255,.14)}
+  .btn:hover{background:var(--brand-hover)}
+  .hashbox{display:flex;gap:8px;align-items:center}
+  .hashbox input{font-family:var(--mono);font-size:12px}
+  #dropzone{border:1.5px dashed var(--border-strong);border-radius:var(--radius-md);padding:14px 16px;
+    color:var(--ink-muted);font-size:13px;text-align:center;cursor:pointer;margin-top:4px}
+  #dropzone.drag{border-color:var(--brand);color:var(--brand);background:var(--brand-tint)}
+  .pill{display:inline-flex;align-items:center;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:600}
+  .pill.ok{background:var(--success-tint);color:var(--success)}
+  .pill.warn{background:var(--warning-tint);color:var(--warning)}
+  code{font-family:var(--mono);font-size:.92em;background:var(--surface-100);border-radius:4px;padding:1px 5px}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="pill" style="background:#1356c7;color:#fff">GRANT INTAKE</span>
+    <h1>Record a written reuse permission</h1>
+    <p class="sub">Turn the email you have into the repo artifacts: the transcription file, the <code>NOTICE.md</code> entry, and the provenance record. Fill every field from what the message <b>actually says</b> — this tool records a grant; it does not create one. The authoritative artifact remains the original message file you commit alongside the transcription.</p>
+    <div class="note"><b>How it works:</b> complete the fields below, drag the original email file into the provenance box to compute its SHA-256, then copy the three generated files into <code>grants/</code> and commit both the outputs and the original. The readiness bar tells you if anything that carries legal weight is missing.</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="card">
+    <h2>1 · The grantor</h2>
+    <p class="hint">Who wrote the permission, and what authority do they hold over Blume Corporation's IP?</p>
+    <div class="row">
+      <div><label for="grantorName">Full name</label><input type="text" id="grantorName" placeholder="e.g. as signed in the email"></div>
+      <div><label for="grantorRole">Role / authority</label>
+        <select id="grantorRole">
+          <option value="">— select —</option>
+          <option>Co-founder / owner of Blume Corporation</option>
+          <option>Officer (CEO / CTO / equivalent)</option>
+          <option>In-house counsel</option>
+          <option>Outside counsel instructed by Blume Corporation</option>
+          <option>Employee (no stated IP authority)</option>
+          <option>Customer support</option>
+        </select>
+      </div>
+      <div><label for="grantorEmail">Sender address</label><input type="text" id="grantorEmail" placeholder="name@blume.codes"></div>
+    </div>
+    <div class="warn" id="warnAuthority"></div>
+  </div>
+
+  <div class="card">
+    <h2>2 · What is covered</h2>
+    <p class="hint">Tick exactly what the message permits. Anything unticked stays under the existing terms.</p>
+    <div class="boxes" id="materials">
+      <label class="box"><input type="checkbox" data-mat value="the Blume desktop application payload extracted from app.asar v2.0.26 (desktop/app/)">desktop/app payload</label>
+      <label class="box"><input type="checkbox" data-mat value="the agent-side plugin bridge (desktop/plugin-bundle/)">plugin-bundle</label>
+      <label class="box"><input type="checkbox" data-mat value="the website mirror (website/)">website mirror</label>
+      <label class="box"><input type="checkbox" data-mat value="the update manifest (desktop/app-update.yml)">app-update.yml</label>
+    </div>
+    <div class="row">
+      <div><label for="grantDate">Date of the grant</label><input type="date" id="grantDate"></div>
+      <div><label for="grantee">Granted to</label><input type="text" id="grantee" placeholder="who/team the permission names"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3 · Rights granted</h2>
+    <p class="hint">Tick only the rights the message explicitly grants. If in doubt, leave it out and rely on the verbatim quote below.</p>
+    <div class="boxes" id="rights">
+      <label class="box"><input type="checkbox" data-r value="use">use</label>
+      <label class="box"><input type="checkbox" data-r value="copy">copy</label>
+      <label class="box"><input type="checkbox" data-r value="modify">modify</label>
+      <label class="box"><input type="checkbox" data-r value="distribute within the organization">distribute internally</label>
+      <label class="box"><input type="checkbox" data-r value="distribute publicly / republish">distribute publicly</label>
+      <label class="box"><input type="checkbox" data-r value="sublicense">sublicense</label>
+    </div>
+    <div class="row">
+      <div><label for="scopeLimit">Stated scope / limits</label>
+        <select id="scopeLimit">
+          <option value="">— select if the message states a scope —</option>
+          <option>internal use by the named team only</option>
+          <option>anyone with access to this repository</option>
+          <option>unrestricted (no limits stated)</option>
+        </select>
+      </div>
+    </div>
+    <label for="verbatimQuote">Verbatim grant text — copy the exact sentence(s) from the email</label>
+    <textarea id="verbatimQuote" placeholder="Paste the exact words that grant permission, in quotes. If the fields above and this quote disagree, this quote governs."></textarea>
+    <div class="warn" id="warnRights"></div>
+  </div>
+
+  <div class="card">
+    <h2>4 · Provenance</h2>
+    <p class="hint">The header details that make the record verifiable, plus a hash of the original message.</p>
+    <div class="row">
+      <div><label for="emailSubject">Subject</label><input type="text" id="emailSubject"></div>
+      <div><label for="messageId">Message-ID header</label><input type="text" id="messageId" placeholder="from Show original"></div>
+      <div><label for="headerTo">To</label><input type="text" id="headerTo"></div>
+    </div>
+    <label>Original message file — drag it here to compute SHA-256 (nothing leaves this page)</label>
+    <div id="dropzone">drop the .eml / .msg / .pdf here, or click to choose</div>
+    <input type="file" id="origFile" style="display:none">
+    <div class="hashbox"><label for="origHash" style="margin:12px 0 4px">SHA-256</label><input type="text" id="origHash" placeholder="or paste the hash if you computed it elsewhere"></div>
+  </div>
+
+  <div class="card">
+    <h2>5 · Readiness</h2>
+    <p class="hint">Green when the record can carry weight. Amber means ask the sender to restate that part before committing.</p>
+    <div class="outbar"><span class="fname">What a reviewer will check</span><span id="readyPill" class="pill warn">not ready</span></div>
+    <ul class="check" id="checklist">
+      <li data-c="authority"><span><b>Authority</b> — named person with IP authority (owner/officer/counsel)<span class="d">Support or un-stated employees cannot license the code</span></span></li>
+      <li data-c="identity"><span><b>Identity</b> — sender address on a corporate domain<span class="d">blume.codes or the company's corporate domain</span></span></li>
+      <li data-c="material"><span><b>Material</b> — at least one covered path selected</span></li>
+      <li data-c="rights"><span><b>Rights</b> — at least one right ticked <i>or</i> a verbatim quote pasted</span></li>
+      <li data-c="date"><span><b>Date</b> — the grant is dated</span></li>
+      <li data-c="provenance"><span><b>Provenance</b> — Message-ID or file hash recorded</span></li>
+      <li data-c="verbatim"><span><b>Verbatim quote</b> — the exact words recorded</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Generated files</h2>
+    <p class="hint">Copy each block into the repo, commit together with the original message file, then push.</p>
+
+    <div class="outbar"><span class="fname" id="fnTranscription">grants/YYYY-MM-DD-blume-reuse-grant.md</span><button class="btn" data-copy="transcription">Copy</button></div>
+    <div class="out" id="transcription"></div>
+
+    <div class="outbar"><span class="fname">NOTICE.md — replacement row</span><button class="btn" data-copy="notice">Copy</button></div>
+    <div class="out" id="notice" style="max-height:200px"></div>
+
+    <div class="outbar"><span class="fname">grants/README.md — current-grant line</span><button class="btn" data-copy="grantsreadme">Copy</button></div>
+    <div class="out" id="grantsreadme" style="max-height:120px"></div>
+  </div>
+
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const dash = (s) => String(s||'').replace(/[<>:"/\\|?*]/g,'-').trim();
+
+const fields = ['grantorName','grantorRole','grantorEmail','grantDate','grantee','scopeLimit','verbatimQuote','emailSubject','messageId','headerTo','origHash'];
+for (const f of fields) { const el = $(f); el.addEventListener('input', render); el.addEventListener('change', render); }
+document.querySelectorAll('#materials input, #rights input').forEach(cb => cb.addEventListener('change', function(){ this.closest('.box').classList.toggle('on', this.checked); render(); }));
+
+const dropzone = $('dropzone'), fileInput = $('origFile');
+dropzone.addEventListener('click', () => fileInput.click());
+dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('drag'); });
+dropzone.addEventListener('dragleave', () => dropzone.classList.remove('drag'));
+dropzone.addEventListener('drop', async e => { e.preventDefault(); dropzone.classList.remove('drag'); if (e.dataTransfer.files[0]) await hashFile(e.dataTransfer.files[0]); });
+fileInput.addEventListener('change', async () => { if (fileInput.files[0]) await hashFile(fileInput.files[0]); });
+async function hashFile(file){
+  try {
+    const buf = await file.arrayBuffer();
+    const h = await crypto.subtle.digest('SHA-256', buf);
+    $('origHash').value = [...new Uint8Array(h)].map(b => b.toString(16).padStart(2,'0')).join('');
+    dropzone.textContent = file.name + ' — hashed ✓ (drop another to replace)';
+  } catch (err) { dropzone.textContent = 'hash failed in this browser — paste the SHA-256 manually'; }
+  render();
+}
+
+function checked(sel){ return [...document.querySelectorAll(sel)].filter(c => c.checked).map(c => c.value); }
+
+function fmtDate(){
+  const v = $('grantDate').value;
+  if (!v) return '____-__-__';
+  const [y,m,d] = v.split('-'); return `${y}-${m}-${d}`;
+}
+
+function roleOk(){
+  const r = $('grantorRole').value;
+  return r && !/support/i.test(r) && !/no stated IP authority/i.test(r);
+}
+function domainOk(){
+  const e = $('grantorEmail').value.trim().toLowerCase();
+  return /@(blume\.codes|blume\.com|blume\.corp|blumecorp\.[a-z]+)$/.test(e);
+}
+
+function render(){
+  const date = fmtDate();
+  const name = $('grantorName').value.trim() || '[GRANTOR NAME]';
+  const role = $('grantorRole').value || '[ROLE — authority over Blume Corporation IP]';
+  const email = $('grantorEmail').value.trim() || '[SENDER EMAIL]';
+  const grantee = $('grantee').value.trim() || '[GRANTEE]';
+  const subject = $('emailSubject').value.trim() || '[SUBJECT]';
+  const mid = $('messageId').value.trim() || '[MESSAGE-ID]';
+  const to = $('headerTo').value.trim() || '[RECIPIENT]';
+  const hash = $('origHash').value.trim() || '[SHA-256 — paste or drag the file above]';
+  const quote = $('verbatimQuote').value.trim();
+  const mats = checked('#materials input');
+  const rights = checked('#rights input');
+  const scope = $('scopeLimit').value || '[SCOPE AS STATED]';
+  const matsText = mats.length ? mats.join('; ') : '[MATERIAL AS IDENTIFIED IN THE MESSAGE]';
+  const rightsText = rights.length ? rights.join(', ') : '[RIGHTS AS STATED IN THE QUOTE BELOW]';
+
+  $('fnTranscription').textContent = `grants/${date}-blume-reuse-grant.md`;
+
+  $('transcription').textContent =
+`# Blume reuse grant — recorded ${date}
+
+> Transcription for convenience. The authoritative artifact is the ORIGINAL
+> message committed alongside this file. If fields and the quote disagree,
+> the quote governs.
+
+**From:** ${name} <${email}> — ${role}
+**To:** ${to}
+**Date of grant:** ${date}
+**Subject:** ${subject}
+**Message-ID:** ${mid}
+
+## Verbatim grant text
+
+> ${quote || '[VERBATIM QUOTE — paste the exact sentences from the message]'}
+
+## Recorded scope
+
+- **Material:** ${matsText}
+- **Rights:** ${rightsText}
+- **Granted to:** ${grantee}
+- **Limits:** ${scope}
+
+## Original artifact
+
+- File: [ORIGINAL FILE NAME — commit it next to this transcription]
+- SHA-256: ${hash}
+`;
+
+  $('notice').textContent =
+`| \`desktop/app/\`, \`desktop/plugin-bundle/\` | Blume application payload (app.asar v2.0.26) | © Blume Corporation. Included under a written reuse grant dated ${date} from ${name} (${role}), sender <${email}>. Recorded scope — material: ${matsText}; rights: ${rightsText}; granted to: ${grantee}; limits: ${scope}. Artifact: \`grants/${date}-blume-reuse-grant.md\`, original message SHA-256: ${hash}. Supersedes the blume.codes/terms reference for the covered material. |`;
+
+  $('grantsreadme').textContent =
+`Current grant: \`grants/${date}-blume-reuse-grant.md\` (Blume Corporation, ${date}). NOTICE.md reflects it.`;
+
+  // readiness
+  const checks = {
+    authority: roleOk(),
+    identity: domainOk(),
+    material: mats.length > 0,
+    rights: rights.length > 0 || quote.length > 0,
+    date: !!$('grantDate').value,
+    provenance: !!mid.trim() || !!$('origHash').value.trim(),
+    verbatim: quote.length > 0
+  };
+  for (const [k, ok] of Object.entries(checks)) {
+    const li = document.querySelector(`#checklist li[data-c="${k}"]`);
+    li.classList.toggle('ok', ok); li.classList.toggle('miss', !ok);
+  }
+  const allOk = Object.values(checks).every(Boolean);
+  const pill = $('readyPill');
+  pill.textContent = allOk ? 'ready to record' : 'not ready — amber items missing';
+  pill.className = 'pill ' + (allOk ? 'ok' : 'warn');
+
+  const wA = $('warnAuthority'); const wR = $('warnRights');
+  const roleVal = $('grantorRole').value;
+  wA.style.display = roleVal && !roleOk() ? 'block' : 'none';
+  if (wA.style.display === 'block') wA.textContent = roleVal.includes('upport')
+    ? 'Customer support cannot grant code licenses — the rights sit with Blume Corporation (its owners or counsel per the product terms §14). Ask for the grant to be restated by someone with IP authority.'
+    : 'No stated IP authority — ask the sender to restate the grant with their role (owner, officer, or counsel).';
+  wR.style.display = (rights.length === 0 && quote.length === 0) ? 'block' : 'none';
+  if (wR.style.display === 'block') wR.textContent = 'No rights selected and no verbatim quote — there is nothing to record yet.';
+}
+
+document.querySelectorAll('[data-copy]').forEach(btn => btn.addEventListener('click', () => {
+  const map = { transcription: 'transcription', notice: 'notice', grantsreadme: 'grantsreadme' };
+  const text = $(map[btn.dataset.copy]).textContent;
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(() => { btn.textContent = 'Copied ✓'; setTimeout(() => btn.textContent = 'Copy', 1200); });
+  else { const r = document.createRange(); r.selectNodeContents($(map[btn.dataset.copy])); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+}));
+
+render();
+</script>
+</body>
+</html>
