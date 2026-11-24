@@ -18,8 +18,8 @@ explicitly so nobody has to guess.
 
 | Path | What it is | Status |
 |---|---|---|
-| `desktop/app/` | The Blume desktop application payload, extracted verbatim from the shipped `app.asar` (v2.0.26) — minified bundles, `node_modules`, native binaries | © Blume / its authors. Unlicensed to us; no open-source license exists for it. Kept as interoperability-research reference of a lawfully obtained copy. Do not treat as reusable under this repo's MIT license. |
-| `desktop/plugin-bundle/` | The agent-side MCP bridge shipped inside the app | Same as above |
+| `desktop/app/` | The Blume desktop application payload, extracted verbatim from the shipped `app.asar` (v2.0.26) — minified bundles, `node_modules`, native binaries | © Blume Corporation. Reuse terms are documented at https://blume.codes/terms §3 (internal-use license only; no copy/modify/distribute) and §14 (no rights granted except §3). No open-source license exists for it. Kept as interoperability-research reference of a lawfully obtained copy. Do not treat as reusable under this repo's MIT license. |
+| `desktop/plugin-bundle/` | The agent-side MCP bridge shipped inside the app | Same terms as `desktop/app/` — see https://blume.codes/terms §3, §14 |
 | `desktop/app-update.yml` | Vendor update manifest | Same as above |
 | `website/` | A mirror of the public blume.codes site (HTML, JS chunks, images) | © Blume / its authors — public web assets, mirrored for offline study. Not relicensed by us. |
 | `desktop/app/node_modules/**/LICENSE*` | Third-party package licenses (MIT/BSD/ISC etc.) | Must be retained; they govern those packages |
